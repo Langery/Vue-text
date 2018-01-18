@@ -1,11 +1,11 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <a href="/#/one" class="pagejump">第二页</a>
+    <a href="/#/one" class="pagejump">增删数字</a>
   </div>
 </template>
 
-<script>
+<script>  
 export default {
   name: 'HelloWorld',
   data () {
