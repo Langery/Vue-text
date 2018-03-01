@@ -1,2 +1,2 @@
 ## Router
-It is about the router about vue.
+It is about the router for vue.
