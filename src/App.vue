@@ -6,7 +6,7 @@
     <div id="view">
         <router-link class="title" to="/">首页</router-link>
         <router-link class="title" to="/one">数字增加或删减</router-link>
-        <router-link class="title" to="/new page">建筑照片</router-link>
+        <router-link class="title" to="/new">建筑照片</router-link>
         <router-view></router-view>
     </div>
     
