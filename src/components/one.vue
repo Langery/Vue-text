@@ -13,7 +13,7 @@
         </div>
       <a href="/#/" class="uppage">上一页</a>
       <a class="authorname">作者：{{ author }}</a>
-      <a href="/#/new page" class="downpage">下一页</a>
+      <a href="/#/new" class="downpage">下一页</a>
   </div>
 </template>
 
