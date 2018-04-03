@@ -17,7 +17,7 @@ export default new Router({
       path: '/one',
       component: one
     },{
-      path: '/new page',
+      path: '/new',
       name: 'new page',
       component: newpage
     },{
