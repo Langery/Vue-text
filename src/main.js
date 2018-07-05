@@ -6,7 +6,6 @@ import router from './router' // 引入路由配置文件
 
 Vue.config.productionTip = false // 关闭生产模式下给出的提示
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app', // 挂载id,实例下所有内容都会在index.html中的#app下显示

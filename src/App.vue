@@ -9,7 +9,6 @@
         <router-link class="title" to="/new">建筑照片</router-link>
         <router-view></router-view>
     </div>
-    
   </div>
 </template>
 

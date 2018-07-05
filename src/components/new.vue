@@ -7,9 +7,9 @@
 </template>
 
 <script type="text/javascript">
-    export default {
-          name: 'new page'
-    }
+export default {
+  name: 'new page'
+}
 </script>
 
 <style>
