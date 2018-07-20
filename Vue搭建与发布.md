@@ -40,15 +40,17 @@
 > 组件化开发基本结构:
 
     |-build                       // 构建脚本目录          
-    | 　|-webpack.base.conf.js    // webpack基本配置   
+    | 　|-webpack.base.conf.js    // webpack基本配置 
+    | 　|-webpack.dev.conf.js     // webpack开发环境配置
+    | 　|-webpack.prod.conf.js    // webpack生产环境配置
     |-config                      // 项目配置   
     |   |-index.js                // 配置访问接口
     |-node_modules                // node依赖包   
     |-src   
-    | 　|-assets                  // 资源目录   
+    | 　|-assets                  // 本地资源目录   
     | 　| 　|-css                 // CSS目录  
-    | 　| 　|-script              // JS目录  
-    | 　| 　|-images              // 图片文件目录   
+    | 　| 　|-images              // 图片文件目录  
+    | 　| 　|-script              // JS目录   
     |　 |-router                  // 路由目录  
     |　 |-view                    // 视图层文件目录 
     | 　| 　|-components          // 通用组件目录  
@@ -56,9 +58,14 @@
     | 　|　 | 　|-components      // 当前视图层组件文件目录  
     | 　|　 |　 |-index.vue       // 当前视图层主体文件  
     | 　|-App.vue                // 根组件  
-    |　 |-main.js                // 入口js文件  
+    |　 |-main.js                // 入口js文件 
+    |-static                     // 引入资源目录
+    |   |-css
+    |   |-images
+    |   |-script 
     |-index.html                 // 入口页面  
     |-package.json               // 项目基本信息  
+    |-web.js                     // Node启动文件  
 
 
 ## 环境准备过程
