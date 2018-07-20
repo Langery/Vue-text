@@ -1,15 +1,20 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue' // 引入vue模块
-import App from './App' // 引入vue组件
-import router from './router' // 引入路由配置文件
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import VueResource from 'vue-resource'
+// import $ from 'jquery'
+// import 'bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/bootstrap/dist/js/bootstrap'
 
-Vue.config.productionTip = false // 关闭生产模式下给出的提示
+Vue.use(VueResource)
+Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app', // 挂载id,实例下所有内容都会在index.html中的#app下显示
-  router, // 注入路由配置
-  template: '<App/>', // 配置根模板
-  components: { App } // 注入组件
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
 })
