@@ -78,6 +78,221 @@
 即可运行当前vue项目
 
 ## 文件作用详述
+> 组件化开发基本结构:
+
+    |-build                       // 构建脚本目录          
+    | 　|-webpack.base.conf.js    // webpack基本配置 
+    | 　|-webpack.dev.conf.js     // webpack开发环境配置
+    | 　|-webpack.prod.conf.js    // webpack生产环境配置
+    |-config                      // 项目配置   
+    |   |-index.js                // 用来定义开发环境和生产环境中所需要的参数
+    |-node_modules                // node依赖包   
+    |-src   
+    | 　|-assets                  // 本地资源目录   
+    | 　| 　|-css                 // CSS目录  
+    | 　| 　|-images              // 图片文件目录  
+    | 　| 　|-script              // JS目录   
+    |　 |-router                  // 路由目录  
+    |　 |-view                    // 视图层文件目录 
+    | 　| 　|-components          // 通用组件目录  
+    | 　|　 |-home                // 各界面视图层文件目录(如:home)  
+    | 　|　 | 　|-components      // 当前视图层组件文件目录  
+    | 　|　 |　 |-index.vue       // 当前视图层主体文件  
+    | 　|-App.vue                // 根组件  
+    |　 |-main.js                // 入口js文件 
+    |-static                     // 引入资源目录
+    |   |-css
+    |   |-images
+    |   |-script 
+    |-index.html                 // 入口页面  
+    |-package.json               // 项目基本信息  
+    |-web.js                     // Node启动文件  
+
+## 文件作用详述
+> build/webpack.base.conf.js
+
+    'use strict'                          // 严格模式
+    const path = require('path')
+    const utils = require('./utils')
+    const config = require('../config')   // 获取配置
+    const vueLoaderConfig = require('./vue-loader.conf')
+
+    const webpack = require('webpack')
+
+    function resolve (dir) {
+    return path.join(__dirname, '..', dir)
+    }
+
+    const createLintingRule = () => ({
+    test: /\.(js|vue)$/,
+    loader: 'eslint-loader',
+    enforce: 'pre',
+    include: [resolve('src'), resolve('test')],
+    options: {
+        formatter: require('eslint-friendly-formatter'),
+        emitWarning: !config.dev.showEslintErrorsInOverlay
+    }
+    })
+
+    module.exports = {
+    context: path.resolve(__dirname, '../'),
+    entry: {                              // 配置webpack编译入口
+        app: './src/main.js'
+    },
+    output: {                             // 配置webpack输出路径和命名规则
+        path: config.build.assetsRoot,
+        filename: '[name].js',
+        publicPath: process.env.NODE_ENV === 'production'
+        ? config.build.assetsPublicPath
+        : config.dev.assetsPublicPath
+    },
+    resolve: {
+        extensions: ['.js', '.vue', '.json'],
+        alias: {                          // 创建import或require的别名，一些常用的，路径长的都可以用别名
+        'vue$': 'vue/dist/vue.esm.js',
+        '@': resolve('src'),
+        'bootstrap': resolve('../node_modules/bootstrap')
+        }
+    },
+    module: {
+        rules: [
+        ...(config.dev.useEslint ? [createLintingRule()] : []),
+        {
+            test: /\.vue$/,
+            loader: 'vue-loader',
+            options: vueLoaderConfig
+        },
+        {
+            test: /\.js$/,
+            loader: 'babel-loader',
+            include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        },
+        {
+            test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+            loader: 'url-loader',
+            options: {
+            limit: 10000,
+            name: utils.assetsPath('img/[name].[hash:7].[ext]')
+            }
+        },
+        {
+            test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+            loader: 'url-loader',
+            options: {
+            limit: 10000,
+            name: utils.assetsPath('media/[name].[hash:7].[ext]')
+            }
+        },
+        {
+            test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+            loader: 'url-loader',
+            options: {
+            limit: 10000,
+            name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+            }
+        }
+        ]
+    },
+    node: {
+        // prevent webpack from injecting useless setImmediate polyfill because Vue
+        // source contains it (although only uses it if it's native).
+        setImmediate: false,
+        // prevent webpack from injecting mocks to Node native modules
+        // that does not make sense for the client
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        child_process: 'empty'
+    },
+    // 增加一个plugins
+    plugins: [
+        new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery'
+        })
+    ]
+    }
+
+> config/index.js
+
+    'use strict'                         // 严格模式
+    // Template version: 1.3.1
+    // see http://vuejs-templates.github.io/webpack for documentation.
+
+    const path = require('path')
+
+    module.exports = {
+    dev: {
+
+        // Paths
+        assetsSubDirectory: 'static',    // 编译输出的二级目录
+        assetsPublicPath: '/',
+        proxyTable: {},
+
+        // Various Dev Server settings
+        host: 'localhost', // can be overwritten by process.env.HOST
+        port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined  接口位置:8080,如果出现接口占位的问题可以更改此位置
+        autoOpenBrowser: false,
+        errorOverlay: true,
+        notifyOnErrors: true,
+        poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+
+        // Use Eslint Loader?
+        // If true, your code will be linted during bundling and
+        // linting errors and warnings will be shown in the console.
+        useEslint: true,
+        // If true, eslint errors and warnings will also be shown in the error overlay
+        // in the browser.
+        showEslintErrorsInOverlay: false,
+
+        /**
+        * Source Maps
+        */
+
+        // https://webpack.js.org/configuration/devtool/#development
+        devtool: 'cheap-module-eval-source-map',
+
+        // If you have problems debugging vue-files in devtools,
+        // set this to false - it *may* help
+        // https://vue-loader.vuejs.org/en/options.html#cachebusting
+        cacheBusting: true,
+
+        cssSourceMap: true
+    },
+
+    build: {
+        // Template for index.html
+        index: path.resolve(__dirname, '../dist/index.html'),
+
+        // Paths
+        assetsRoot: path.resolve(__dirname, '../dist'),
+        assetsSubDirectory: 'static',   // 编译输出的二级目录
+        assetsPublicPath: './',     // 在封装发布时，需将此处的 '/' 改为 './'
+
+        /**
+        * Source Maps
+        */
+
+        productionSourceMap: true,
+        // https://webpack.js.org/configuration/devtool/#production
+        devtool: '#source-map',
+
+        // Gzip off by default as many popular static hosts such as
+        // Surge or Netlify already gzip all static assets for you.
+        // Before setting to `true`, make sure to:
+        // npm install --save-dev compression-webpack-plugin
+        productionGzip: false,
+        productionGzipExtensions: ['js', 'css'],
+
+        // Run the build command with an extra argument to
+        // View the bundle analyzer report after build finishes:
+        // `npm run build --report`
+        // Set to `true` or `false` to always turn it on or off
+        bundleAnalyzerReport: process.env.npm_config_report
+    }
+    }
+
 > package.json
 
     {
