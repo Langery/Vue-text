@@ -397,7 +397,7 @@
 然后执行:
 
     npm run build
-在vuer-demo中生成 `dist` 文件夹,之后 `Node` 启动 `dist/index.html`,即可Node启动此项目.
+在vuer-demo中生成 `dist` 文件夹,所有的vue打包文件都在 `dist` 文件夹内,之后 `Node` 启动 `dist/index.html`,即可Node启动此项目.
 
 ## 搭建过程中可能会出现的错误问题汇总(delete)
 > 若出现:
