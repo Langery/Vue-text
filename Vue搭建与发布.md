@@ -39,19 +39,21 @@
 ## 基本(基础)项目结构
 > 组件化开发基本结构:
 
-    |-build                       // 构建脚本目录          
+    |-build                       // 构建脚本目录
     | 　|-webpack.base.conf.js    // webpack基本配置 
     | 　|-webpack.dev.conf.js     // webpack开发环境配置
     | 　|-webpack.prod.conf.js    // webpack生产环境配置
     |-config                      // 项目配置   
-    |   |-index.js                // 配置访问接口
+    |   |-index.js                // 用来定义开发环境和生产环境中所需要的参数
     |-node_modules                // node依赖包   
     |-src   
-    | 　|-assets                  // 本地资源目录   
-    | 　| 　|-css                 // CSS目录  
-    | 　| 　|-images              // 图片文件目录  
-    | 　| 　|-script              // JS目录   
-    |　 |-router                  // 路由目录  
+    | 　|-assets                  // 本地资源目录
+    | 　|-common                  // 外链文件目录
+    | 　| 　|-css                 // css文件目录  
+    | 　| 　|-js                  // js文件目录  
+    |　 |-config                  // 连接API目录
+    |　 |-server                  // 服务目录
+    |　 |-store                   // 接口处理目录
     |　 |-view                    // 视图层文件目录 
     | 　| 　|-components          // 通用组件目录  
     | 　|　 |-home                // 各界面视图层文件目录(如:home)  
@@ -61,7 +63,6 @@
     |　 |-main.js                // 入口js文件 
     |-static                     // 引入资源目录
     |   |-css
-    |   |-images
     |   |-script 
     |-index.html                 // 入口页面  
     |-package.json               // 项目基本信息  
