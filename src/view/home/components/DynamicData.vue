@@ -21,7 +21,6 @@ export default {
       emulateJSON: true
     }).then(function (response) {
       // 这里是处理正确的回调
-
       this.articles = response.data.subjects
       // this.articles = response.data["subjects"] 也可以
     }, function (response) {
@@ -32,8 +31,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 ul{
   list-style-type: none;
+  li{
+    float: left;
+    padding-left: 10px;
+  }
 }
 </style>
