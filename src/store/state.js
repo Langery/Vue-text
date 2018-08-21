@@ -1,5 +1,5 @@
 const state = {
-  id: null
+  count: 1
 }
 
 export default state
