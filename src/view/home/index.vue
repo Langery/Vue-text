@@ -13,6 +13,19 @@ import GeneralAss from '@/view/components/GeneralAss.vue'
 import DynamicData from '@/view/home/components/DynamicData.vue'
 import DataText from '@/view/home/components/DataText.vue'
 
+/**
+ * 生命周期
+ * beforeCreate
+ *  初始化事件，进行数据观测
+ * created
+ * beforeMount
+ * mounted
+ * beforeUpdate
+ * updated
+ * beforeDestroy
+ * destroyed
+ */
+
 export default {
   components: {
     ComponentText,
@@ -23,6 +36,30 @@ export default {
   data () {
     return {
     }
+  },
+  beforeCreate () {
+    console.log('--------------------------------------beforeCreate')
+  },
+  created () {
+    console.log('--------------------------------------created')
+  },
+  beforeMount () {
+    console.log('--------------------------------------beforeMount')
+  },
+  mounted () {
+    console.log('--------------------------------------mounted')
+  },
+  beforeUpdate () {
+    console.log('---------------------------------------beforeUpdate')
+  },
+  updated () {
+    console.log('----------------------------------------updated')
+  },
+  beforeDestroy () {
+    console.log('----------------------------------------beforeDestroy')
+  },
+  destroyed () {
+    console.log('----------------------------------------destroyed')
   }
 }
 </script>
