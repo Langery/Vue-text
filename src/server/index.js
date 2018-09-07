@@ -2,5 +2,7 @@
 
 import http from './request'
 
-// 获取微信签名
-export const wxConfig = url => http.get(`/wxConfig?url=${url}`)
+// post
+export const postReq = data => http.post('pulic', '/posturl', data)
+// get
+export const getReq = url => http.get('pulic', `/get?url=${url}`)
