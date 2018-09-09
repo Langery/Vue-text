@@ -5,6 +5,7 @@
     <dynamic-data></dynamic-data>
     <data-text></data-text>
     <two-way-binding></two-way-binding>
+    <cascade-form></cascade-form>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import GeneralAss from '@/view/components/GeneralAss.vue'
 import DynamicData from '@/view/home/components/DynamicData.vue'
 import DataText from '@/view/home/components/DataText.vue'
 import TwoWayBinding from '@/view/home/components/TwoWayBinding.vue'
+import CascadeForm from '@/view/components/CascadeForm'
 
 /**
  * 生命周期
@@ -34,7 +36,8 @@ export default {
     GeneralAss,
     DynamicData,
     DataText,
-    TwoWayBinding
+    TwoWayBinding,
+    CascadeForm
   },
   data () {
     return {
