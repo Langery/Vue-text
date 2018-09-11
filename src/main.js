@@ -7,9 +7,9 @@ import router from './router'
 import axios from 'axios'
 import VueResource from 'vue-resource'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import '../node_modules/bootstrap/dist/js/bootstrap'
 // import $ from 'jquery'
 // import 'bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/bootstrap/dist/js/bootstrap'
 
 Vue.use(VueResource, axios, VueAwesomeSwiper)
 Vue.config.productionTip = false

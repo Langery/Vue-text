@@ -1,6 +1,6 @@
 <template>
   <div>
-    <general-ass></general-ass>
+    <top-title></top-title>
     <component-text></component-text>
     <dynamic-data></dynamic-data>
     <data-text></data-text>
@@ -10,8 +10,8 @@
 </template>
 
 <script>
+// import TopTitle from '@/view/components/TopTitle'
 import ComponentText from '@/view/home/components/ComponentText.vue'
-import GeneralAss from '@/view/components/GeneralAss.vue'
 import DynamicData from '@/view/home/components/DynamicData.vue'
 import DataText from '@/view/home/components/DataText.vue'
 import TwoWayBinding from '@/view/home/components/TwoWayBinding.vue'
@@ -32,8 +32,9 @@ import CascadeForm from '@/view/components/CascadeForm'
 
 export default {
   components: {
+    'TopTitle': () => import('@/view/components/TopTitle'),
+    // TopTitle,
     ComponentText,
-    GeneralAss,
     DynamicData,
     DataText,
     TwoWayBinding,
