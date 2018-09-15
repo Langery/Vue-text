@@ -10,13 +10,6 @@
 </template>
 
 <script>
-// import TopTitle from '@/view/components/TopTitle'
-import ComponentText from '@/view/home/components/ComponentText.vue'
-import DynamicData from '@/view/home/components/DynamicData.vue'
-import DataText from '@/view/home/components/DataText.vue'
-import TwoWayBinding from '@/view/home/components/TwoWayBinding.vue'
-import CascadeForm from '@/view/components/CascadeForm'
-
 /**
  * 生命周期
  * beforeCreate
@@ -29,16 +22,14 @@ import CascadeForm from '@/view/components/CascadeForm'
  * beforeDestroy
  * destroyed
  */
-
 export default {
   components: {
     'TopTitle': () => import('@/view/components/TopTitle'),
-    // TopTitle,
-    ComponentText,
-    DynamicData,
-    DataText,
-    TwoWayBinding,
-    CascadeForm
+    'ComponentText': () => import('@/view/home/components/ComponentText.vue'),
+    'DynamicData': () => import('@/view/home/components/DynamicData.vue'),
+    'DataText': () => import('@/view/home/components/DataText.vue'),
+    'TwoWayBinding': () => import('@/view/home/components/TwoWayBinding.vue'),
+    'CascadeForm': () => import('@/view/components/CascadeForm')
   },
   data () {
     return {
