@@ -5,8 +5,12 @@
     <!-- 瀑布流 -->
     <!-- 一列的内容控制 -->
     <waterfall :line-gap="200">
+      <waterfall-slot :width="500" :height="500">
+        <progress-bar></progress-bar>
+      </waterfall-slot>
       <!-- 一行的内容控制 -->
       <waterfall-slot :width="500" :height="500">
+        <!-- bootstrap 应用 -->
         <component-text></component-text>
       </waterfall-slot>
       <waterfall-slot :width="500" :height="500">
@@ -42,6 +46,7 @@
  */
 export default {
   components: {
+    'ProgressBar': () => import('@/view/home/components/ProgressBar'),
     'TopTitle': () => import('@/view/components/TopTitle'),
     'ComponentText': () => import('@/view/home/components/ComponentText.vue'),
     'DynamicData': () => import('@/view/home/components/DynamicData.vue'),
