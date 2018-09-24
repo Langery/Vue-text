@@ -1,11 +1,29 @@
 <template>
   <div>
+    <!-- 头部信息 -->
     <top-title></top-title>
-    <component-text></component-text>
-    <dynamic-data></dynamic-data>
-    <data-text></data-text>
-    <two-way-binding></two-way-binding>
-    <cascade-form></cascade-form>
+    <!-- 瀑布流 -->
+    <!-- 一列的内容控制 -->
+    <waterfall :line-gap="200">
+      <!-- 一行的内容控制 -->
+      <waterfall-slot :width="500" :height="500">
+        <component-text></component-text>
+      </waterfall-slot>
+      <waterfall-slot :width="500" :height="500">
+        <data-text></data-text>
+      </waterfall-slot>
+      <waterfall-slot :width="500" :height="500">
+        <two-way-binding></two-way-binding>
+      </waterfall-slot>
+    </waterfall>
+    <waterfall :line-gap="200">
+      <waterfall-slot :width="500" :height="500">
+        <dynamic-data></dynamic-data>
+      </waterfall-slot>
+      <waterfall-slot :width="500" :height="500">
+        <cascade-form></cascade-form>
+      </waterfall-slot>
+    </waterfall>
   </div>
 </template>
 
@@ -29,7 +47,9 @@ export default {
     'DynamicData': () => import('@/view/home/components/DynamicData.vue'),
     'DataText': () => import('@/view/home/components/DataText.vue'),
     'TwoWayBinding': () => import('@/view/home/components/TwoWayBinding.vue'),
-    'CascadeForm': () => import('@/view/components/CascadeForm')
+    'CascadeForm': () => import('@/view/components/CascadeForm'),
+    'Waterfall': () => import('vue-waterfall/lib/waterfall'),
+    'WaterfallSlot': () => import('vue-waterfall/lib/waterfall-slot')
   },
   data () {
     return {
