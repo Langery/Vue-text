@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="component_text">
     <a href="#" class="badge badge-primary">Primary</a>
     <a href="#" class="badge badge-secondary">Secondary</a>
     <a href="#" class="badge badge-success">Success</a>
@@ -24,4 +24,10 @@ export default {
 
 <style scoped>
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+.component_text{
+  width: 100%;
+  height: 100%;
+  background: #FEDFE1;
+}
 </style>

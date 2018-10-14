@@ -54,5 +54,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+.twowaybinding{
+  width: 100%;
+  height: 100%;
+  background: #FB9966;
+  h2{
+    font-weight: normal;
+  }
+}
 </style>

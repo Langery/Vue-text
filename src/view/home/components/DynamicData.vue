@@ -34,9 +34,13 @@ export default {
 <style lang="less" scoped>
 ul{
   list-style-type: none;
+  width: 100%;
+  height: 100%;
+  background: #F19483;
   li{
     float: left;
     padding-left: 10px;
+    color: #0C0C0C;
   }
 }
 </style>

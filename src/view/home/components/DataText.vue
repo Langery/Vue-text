@@ -28,7 +28,16 @@ export default {
 
 <style lang="less" scoped>
 .datatext{
-  display: block;
-  clear: both;
+  width: 100%;
+  height: 100%;
+  background: #EEA9A9;
+  button{
+    width: 60px;
+    height: 20px;
+    line-height: 10px;
+    font-size: 18px;
+    background: #81C7D4;
+    border-radius: 10px;
+  }
 }
 </style>
