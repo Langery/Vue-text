@@ -23,6 +23,12 @@
         <dynamic-data></dynamic-data>
       </waterfall-slot>
     </waterfall>
+    <waterfall :line-gap="400">
+      <waterfall-slot :width="600" :height="400">
+        <!-- 轮播图 -->
+        <carousel-com></carousel-com>
+      </waterfall-slot>
+    </waterfall>
   </div>
 </template>
 
@@ -41,13 +47,14 @@
  */
 export default {
   components: {
+    'Waterfall': () => import('vue-waterfall/lib/waterfall'),
+    'WaterfallSlot': () => import('vue-waterfall/lib/waterfall-slot'),
     'TopTitle': () => import('@/view/components/TopTitle'),
     'ComponentText': () => import('@/view/home/components/ComponentText.vue'),
     'DynamicData': () => import('@/view/home/components/DynamicData.vue'),
     'DataText': () => import('@/view/home/components/DataText.vue'),
     'TwoWayBinding': () => import('@/view/home/components/TwoWayBinding.vue'),
-    'Waterfall': () => import('vue-waterfall/lib/waterfall'),
-    'WaterfallSlot': () => import('vue-waterfall/lib/waterfall-slot')
+    'CarouselCom': () => import('@/view/components/Carousel')
   },
   data () {
     return {
