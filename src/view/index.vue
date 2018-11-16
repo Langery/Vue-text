@@ -2,10 +2,14 @@
   <div>
     <!-- 头部信息 -->
     <top-title></top-title>
+    <!-- 轮播图 -->
+    <carousel-com></carousel-com>
     <!-- 瀑布流 -->
     <!-- 一列的内容控制 -->
+    <!-- line-gap 行高 -->
     <waterfall :line-gap="200">
       <!-- 一行的内容控制 -->
+      <!-- 设置长宽 -->
       <waterfall-slot :width="500" :height="500">
         <!-- bootstrap 应用 -->
         <component-text></component-text>
@@ -21,12 +25,6 @@
     <waterfall :line-gap="200">
       <waterfall-slot :width="500" :height="500">
         <dynamic-data></dynamic-data>
-      </waterfall-slot>
-    </waterfall>
-    <waterfall :line-gap="400">
-      <waterfall-slot :width="600" :height="400">
-        <!-- 轮播图 -->
-        <carousel-com></carousel-com>
       </waterfall-slot>
     </waterfall>
   </div>
