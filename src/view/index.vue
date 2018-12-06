@@ -2,8 +2,6 @@
   <div>
     <!-- 头部信息 -->
     <top-title></top-title>
-    <!-- 轮播图 -->
-    <carousel-com></carousel-com>
     <!-- 瀑布流 -->
     <!-- 一列的内容控制 -->
     <!-- line-gap 行高 -->
@@ -31,18 +29,7 @@
 </template>
 
 <script>
-/**
- * 生命周期
- * beforeCreate
- *  初始化事件，进行数据观测
- * created
- * beforeMount
- * mounted
- * beforeUpdate
- * updated
- * beforeDestroy
- * destroyed
- */
+// 此文件需要在home文件夹下,若再在此文件的子文件下会消失热插拔效果
 export default {
   components: {
     'Waterfall': () => import('vue-waterfall/lib/waterfall'),
@@ -51,8 +38,7 @@ export default {
     'ComponentText': () => import('@/view/home/components/ComponentText.vue'),
     'DynamicData': () => import('@/view/home/components/DynamicData.vue'),
     'DataText': () => import('@/view/home/components/DataText.vue'),
-    'TwoWayBinding': () => import('@/view/home/components/TwoWayBinding.vue'),
-    'CarouselCom': () => import('@/view/components/Carousel')
+    'TwoWayBinding': () => import('@/view/home/components/TwoWayBinding.vue')
   },
   data () {
     return {
