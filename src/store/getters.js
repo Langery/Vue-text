@@ -4,3 +4,5 @@ const getters = {
 }
 
 export default getters
+
+export const baseData = state => state.baseData

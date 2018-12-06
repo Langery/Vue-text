@@ -11,7 +11,7 @@ const production = {
 }
 
 const development = {
-  publicPath: 'http:///api'
+  publicPath: 'http://api'
 }
 
 const location = env === 'production' ? production : development

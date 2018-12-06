@@ -1,6 +1,6 @@
 <template>
   <div class="toptitle">
-    <h2>{{titleName}}</h2>
+    <h2><a href="/home">{{titleName}}</a></h2>
   </div>
 </template>
 
@@ -28,6 +28,10 @@ export default {
     text-align: start;
     padding-left: 20px;
     font-weight: normal;
+    a{
+      color: #FCFAF2;
+      text-decoration: none;
+    }
   }
 }
 </style>
