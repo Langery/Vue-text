@@ -1,15 +1,14 @@
 /*
-* @Author: primavera <primaveraiiiiing618@gmail.com>
-* @Date:   2018-07-18 14:29:00
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-07-18 14:29:00
+* @Author: Langery
 */
 // import ENV from './env';
 const env = process.env.NODE_ENV
+// 生产模式地址
 const production = {
   publicPath: '/api'
 }
 
+// 开发模式地址
 const development = {
   publicPath: 'http://api'
 }
