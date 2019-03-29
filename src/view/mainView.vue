@@ -4,6 +4,9 @@
     <p>点击一次和双击</p>
     <button @click="first()" @dblclick="second()">点击一下</button>
     <span>{{say}}</span>
+    <one
+      v-on:one="two"
+    ></one>
   </div>
 </template>
 
@@ -14,11 +17,18 @@ export default {
       say: ''
     }
   },
+  components: {
+    'one': () => import('@/view/components/one') 
+  },
   created () {
   },
   mounted () {
   },
   methods: {
+    two (one, three) {
+      console.log(one)
+      console.log(three)
+    },
     first () {
       const person = {
         name: 'Story',
