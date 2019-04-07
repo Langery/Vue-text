@@ -2,7 +2,8 @@
   <div class="mainView">
     <h1>彩蛋</h1>
     <p>点击一次和双击</p>
-    <button @click="first()" @dblclick="second()">点击一下</button>
+    <!--  @dblclick="second()" -->
+    <button @click="first()">点击一下</button>
     <span>{{say}}</span>
     <one
       v-on:one="two"
@@ -14,7 +15,8 @@
 export default {
   data () {
     return {
-      say: ''
+      say: '',
+      count: 0
     }
   },
   components: {
@@ -36,11 +38,19 @@ export default {
         like: 'guitar',
         say: '第一个彩蛋'
       }
-      this.say = person.say
-    },
-    second () {
-      this.say = ''
+      // this.say = person.say
+      this.count++
+      new Promise((resolve, reject) => {
+        this.count % 2 === 0 ? resolve() : reject(new Error())
+      }).then(() => {
+        this.say = person.say
+      }, () => {
+        this.say = ''
+      })
     }
+    // second () {
+    //   this.say = ''
+    // }
   }
 }
 </script>
