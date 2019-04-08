@@ -38,19 +38,19 @@ export default {
         like: 'guitar',
         say: '第一个彩蛋'
       }
-      // this.say = person.say
-      this.count++
-      new Promise((resolve, reject) => {
-        this.count % 2 === 0 ? resolve() : reject(new Error())
-      }).then(() => {
-        this.say = person.say
-      }, () => {
-        this.say = ''
-      })
+      this.say = person.say
+      // this.count++
+      // new Promise((resolve, reject) => {
+      //   this.count % 2 === 0 ? resolve() : reject(new Error())
+      // }).then(() => {
+      //   this.say = person.say
+      // }, () => {
+      //   this.say = ''
+      // })
+    },
+    second () {
+      this.say = ''
     }
-    // second () {
-    //   this.say = ''
-    // }
   }
 }
 </script>
