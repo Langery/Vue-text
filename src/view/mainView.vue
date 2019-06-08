@@ -20,7 +20,7 @@ export default {
     }
   },
   components: {
-    'one': () => import('@/view/components/one') 
+    'one': () => import('@/view/components/one')
   },
   created () {
   },
