@@ -24,6 +24,8 @@ export default {
       if (this.activeImg2 === this.sendI) {
         this.activeImg2 = -1
         this.activeImg1 = this.sendI
+      } else if (this.activeImg1 === this.sendI) {
+        this.activeImg1 = -1
       } else {
         this.activeImg1 = this.sendI
       }
@@ -32,6 +34,8 @@ export default {
       if (this.activeImg1 === this.sendI) {
         this.activeImg1 = -1
         this.activeImg2 = this.sendI
+      } else if (this.activeImg2 === this.sendI) {
+        this.activeImg2 = -1
       } else {
         this.activeImg2 = this.sendI
       }
