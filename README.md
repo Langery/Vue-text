@@ -55,7 +55,7 @@ npm install
   $ npm install --save-dev vue2-ace-editor
 ```
 
-&emsp;目前我们需要的模块并不是 ace 或 vue2-ace-editor ，而是在 node_modules 中的 brace 模块（目前我也没搞懂到底是它，但是管用）。
+&emsp;目前我们需要的模块并不是 ace 或 vue2-ace-editor ，而是在 node_modules 中的 brace 模块（目前我也没搞懂到底为什么是它，但是管用）。
 
 ``` bash
   <script>
