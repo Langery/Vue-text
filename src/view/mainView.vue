@@ -9,7 +9,8 @@
       v-on:one="two"
     ></one>
     <!-- <text-ace></text-ace> -->
-    <data-btn></data-btn>
+    <!-- <data-btn></data-btn> -->
+    <ace-text></ace-text>
   </div>
 </template>
 
@@ -25,7 +26,8 @@ export default {
   components: {
     'one': () => import('@/view/components/one'),
     'TextAce': () => import('@/view/components/textAce'),
-    'DataBtn': () => import('@/view/components/dataBtn')
+    'DataBtn': () => import('@/view/components/dataBtn'),
+    'AceText': () => import('@/view/components/aceText')
   },
   created () {
   },
