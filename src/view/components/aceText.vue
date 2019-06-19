@@ -24,14 +24,22 @@ export default {
     var editor = document.getElementById('editor')
     var editorEle = ace.edit(editor)
     console.log(editorEle)
-    // editorEle.setTheme('brace/theme/monokai')
-    editorEle.setTheme('brace/theme/sqlserver') // 设置主题
-    editorEle.getSession().setMode('brace/mode/sql')
-    editorEle.setFontSize(16)
     editorEle.setOptions({
+      fontSize: '16px', // 字体大小
       enableLiveAutocompletion: true, // 设置自动提示
       autoScrollEditorIntoView: true
     })
+    // editorEle.setTheme('brace/theme/monokai')
+    editorEle.setTheme('brace/theme/sqlserver') // 设置主题
+    editorEle.clearSelection()
+    editorEle.focus()
+    editorEle.selection.moveTo(0, 0)
+    editorEle.getSession().setMode('brace/mode/sql')
+    // editorEle.getSession().setMode({
+    //   path: 'brace/mode/sql'
+    // })
+    // editorEle.setFontSize(16)
+    // editorEle.session.setValue('SELECT * FROM ') // 默认界面文本显示内容
     this.editorInit()
     this.initEditor()
   },
@@ -56,7 +64,7 @@ export default {
       }
       // 添加script标签，去掉开头的行号
       // eslint-disable-next-line
-      var ctext = text.replace(/\d\n/g, '')
+      var ctext = '<table>' + text.replace(/\d\n/g, '') + '<\/table>'
       console.log(ctext)
       // 替换控制台打印(伪装效果)
       if (ctext.indexOf('console.log') > 0) {
