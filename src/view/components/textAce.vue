@@ -29,7 +29,6 @@ export default {
     console.log(editorEle)
     editorEle.setTheme('brace/theme/monokai')
     editorEle.getSession().setMode('brace/mode/javascript')
-    // editorEle.getSession().setMode('brace/mode/sql')
     editorEle.setFontSize(16)
     this.initEditor()
     this.editorInit()
@@ -39,7 +38,6 @@ export default {
       require('brace/ext/language_tools') // language extension prerequsite...
       require('brace/mode/html')
       require('brace/mode/javascript') // language
-      // require('brace/mode/javascript') // language
       require('brace/mode/less')
       require('brace/theme/chrome')
     },
