@@ -8,7 +8,7 @@
     <one
       v-on:one="two"
     ></one>
-    <text-ace></text-ace>
+    <!-- <text-ace></text-ace> -->
     <!-- <data-btn></data-btn> -->
     <!-- <ace-text></ace-text> -->
   </div>

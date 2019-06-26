@@ -84,3 +84,8 @@ npm install
 &emsp;目前已知需通过JS框架链接数据库，所以需要先创建数据库与JS链接，或者通过中间件查询数据库
 - [ ] JS链接数据库框架
 - [ ] 尝试做一个中间层
+
+## D3.js
+
+&emsp;参考资料：
+  1. [D3.js 入门系列 — 选择元素和绑定数据](https://www.cnblogs.com/tanlujia/p/6376686.html)
