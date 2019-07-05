@@ -2,33 +2,6 @@
 
 > A Vue.js project
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
 ## Clear the `node_modules` Tree
 
 ``` bash
@@ -57,7 +30,7 @@ npm install
   $ npm install --save-dev vue2-ace-editor
 ```
 
-&emsp;目前我们需要的模块并不是 ace 或 vue2-ace-editor ，而是在 node_modules 中的 brace 模块（目前我也没搞懂到底为什么是它，但是管用）。
+&emsp;目前我们需要的模块并不是 ace 或 vue2-ace-editor ，而是在 node_modules 中的 brace 模块（目前我也没搞懂到底为什么是它，但是管用）。<br />
 &emsp;[`brace`](https://www.npmjs.com/package/brace)的坑也好多...
 
 ``` javascript
@@ -89,3 +62,11 @@ npm install
 
 &emsp;参考资料：
   1. [D3.js 入门系列 — 选择元素和绑定数据](https://www.cnblogs.com/tanlujia/p/6376686.html)
+  2. [桔子桑](http://www.ecoblog.online/#/web/list?catid=6)
+
+> 引入和使用
+
+&emsp;因为目前项目中的D3版本为此版本，所以以项目为中心安装此依赖
+``` node
+  $ npm install --save-dev d3@5.7.0
+```

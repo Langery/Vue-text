@@ -11,6 +11,8 @@
     <!-- <text-ace></text-ace> -->
     <!-- <data-btn></data-btn> -->
     <!-- <ace-text></ace-text> -->
+    <!-- <tree-diagram></tree-diagram> -->
+    <test-dia></test-dia>
   </div>
 </template>
 
@@ -27,7 +29,9 @@ export default {
     'one': () => import('@/view/components/one'),
     'TextAce': () => import('@/view/components/textAce'),
     'DataBtn': () => import('@/view/components/dataBtn'),
-    'AceText': () => import('@/view/components/aceText')
+    'AceText': () => import('@/view/components/aceText'),
+    'TreeDiagram': () => import('@/view/components/treeDiagram'),
+    'TestDia': () => import('@/view/components/testDia')
   },
   created () {
   },
