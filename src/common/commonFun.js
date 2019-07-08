@@ -76,6 +76,16 @@ export function postData (getUrl, data) {
   })
 }
 
+export function intranetPost (getUrl, data) {
+  return new Promise((resolve, reject) => {
+    const res = getUrl(data)
+    resolve(res)
+  }).then((data) => {
+    // console.log(data)
+    return Promise.resolve(data)
+  })
+}
+
 export function getData (getUrl, ...data) {
   return new Promise((resolve, reject) => {
     const res = getUrl(...data)

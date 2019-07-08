@@ -5,16 +5,31 @@
 
 <script>
 import * as d3 from 'd3'
+import { sampleGraph } from '@/server/index'
+import { intranetPost } from '@/common/commonFun'
 
 export default {
   data () {
     return {}
   },
   mounted () {
-    this.init()
+    this.getSampleGraph()
+    // this.init()
   },
   methods: {
-    init () {
+    getSampleGraph () {
+      const sendData = {  
+        graphName: 'Knowledge'
+      }
+      intranetPost(sampleGraph, sendData)
+        .then(data => {
+          // console.log(data)
+          this.dealData(data.result)
+          // this.init(data.result)
+        })
+        .catch(reason => { console.log(reason) })
+    },
+    init (sendData) {
       var marge = {
         top: 50,
         bottom: 0,
@@ -89,6 +104,9 @@ export default {
           }
         ]
       }
+      // console.log(sendData)
+      // console.log(setData)
+      // var postData = this.dealData(sendData)
 
       var hierarchyData = d3.hierarchy(setData)
 
@@ -99,9 +117,11 @@ export default {
                   })
 
       var treeData = tree(hierarchyData)
-
+      // console.log(treeData)
       var nodes = treeData.descendants()
+      // console.log(nodes)
       var links = treeData.links()
+      // console.log(links)
 
       var berGenerator = d3.linkHorizontal()
                             .x((d) => { return d.y })
@@ -125,7 +145,7 @@ export default {
                 .attr('transform', (d) => {
                   return 'translate(' + d.y + ',' + d.x + ')'
                 })
-      
+      // 圆圈
       gs.append('circle')
         .attr({
           'r': 6,
@@ -133,7 +153,7 @@ export default {
           'stroke': 'blue',
           'storke-width': 1
         })
-      
+      // 文本
       gs.append('text')
         .attr({
           'x': (d) => { return d.children ? -40 : 8 },
@@ -142,6 +162,47 @@ export default {
           'fill': 'red'
         })
         .text((d) => { return d.data.name })
+    },
+    dealData (data) {
+      // console.log(data)
+      // var links = data.links
+      // var nodes = data.nodes
+      // var newArr = []
+
+      // var linkFun = (links) => {
+      //   link.forEach(item => {
+      //     item.children.forEach((i) => {
+      //       i.children.forEach((p) => {
+      //         p.children.forEach((o) => {})
+      //       })
+      //     })
+      //   })
+      // }
+      // console.log(links)
+
+      // function add (a, b) {
+      //   return a + b
+      // }
+      // function addcurry (a) {
+      //   return function (b) {
+      //     return a + b
+      //   }
+      // }
+      // addcurry(2)(3)
+
+      // function curry (fn, arrty = fn.length) {
+      //   return (function nextCurry (pre) {
+      //     return function curried (...nex) {
+      //       var args = [...pre, ...nex]
+      //       return args.length >= arrty ? fn(...args) : nextCurry(args)
+      //     }
+      //   })([])
+      // }
+
+      // links.forEach(item => {
+      //                     开始      结束
+      //   console.log([item.__s, item.__d])
+      // })
     }
   }
 }

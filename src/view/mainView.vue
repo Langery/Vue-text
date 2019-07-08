@@ -5,9 +5,9 @@
     <!--  @dblclick="second()" -->
     <button @click="first()">点击一下</button>
     <span>{{say}}</span>
-    <one
+    <!-- <one
       v-on:one="two"
-    ></one>
+    ></one> -->
     <!-- <text-ace></text-ace> -->
     <!-- <data-btn></data-btn> -->
     <!-- <ace-text></ace-text> -->
@@ -30,8 +30,8 @@ export default {
     'TextAce': () => import('@/view/components/textAce'),
     'DataBtn': () => import('@/view/components/dataBtn'),
     'AceText': () => import('@/view/components/aceText'),
-    'TreeDiagram': () => import('@/view/components/treeDiagram'),
-    'TestDia': () => import('@/view/components/testDia')
+    'TreeDiagram': () => import('@/view/components/D3/treeDiagram'),
+    'TestDia': () => import('@/view/components/D3/testDia')
   },
   created () {
   },
