@@ -103,7 +103,7 @@ export default {
       var nodes = treeData.descendants()
       var links = treeData.links()
 
-      var ber_generator = d3.linkHorizontal()
+      var berGenerator = d3.linkHorizontal()
                             .x((d) => { return d.y })
                             .y((d) => { return d.x })
 
@@ -112,7 +112,7 @@ export default {
         .attr('d', (d) => {
           var start = { x: d.source.x, y: d.source.y }
           var end = { x: d.target.x, y: d.target.y }
-          return ber_generator({ source: start, target: end })
+          return berGenerator({ source: start, target: end })
         })
         .attr({
           'fill': 'none',
@@ -120,6 +120,28 @@ export default {
           'stroke-width': 1
         })
 
+      var gs = g.append('g')
+                .automatch('g', nodes)
+                .attr('transform', (d) => {
+                  return 'translate(' + d.y + ',' + d.x + ')'
+                })
+      
+      gs.append('circle')
+        .attr({
+          'r': 6,
+          'fill': 'white',
+          'stroke': 'blue',
+          'storke-width': 1
+        })
+      
+      gs.append('text')
+        .attr({
+          'x': (d) => { return d.children ? -40 : 8 },
+          'y': -5,
+          'dy': 10,
+          'fill': 'red'
+        })
+        .text((d) => { return d.data.name })
     }
   }
 }

@@ -6,7 +6,7 @@
 
 <script>
 import * as d3 from 'd3'
-import automatch from '@/common/automatch'
+
 export default {
   data () {
     return {}
@@ -24,12 +24,19 @@ export default {
       }
       var dataset = [250, 120, 170, 210, 90]
       var svg = d3.select('svg')
-      svg.attr({'width': 500,'height': 500})
+      svg.attr({'width': 500, 'height': 500})
 
       var rectHeight = 30
-      var g = svg.append('g')
+      svg.append('g')
         .attr('transform', 'translate(' + margin.top + ',' + margin.left + ')')
         .automatch('rect', dataset)
+        .attr({
+          'x': 20,
+          'y': (d, i) => { return i * rectHeight },
+          'width': (d) => { return d },
+          'height': rectHeight - 5,
+          'fill': 'blue'
+        })
     }
   }
 }

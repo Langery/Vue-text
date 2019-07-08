@@ -1,6 +1,4 @@
-import * as d3 from 'd3'
-
-export default function(node, arr) {
+export default function (node, arr) {
   console.log(this.selectAll(node))
   const nodelistsize = this.selectAll(node)._groups[0].length
   if (Array.prototype.isPrototypeOf(arr)) {
@@ -14,7 +12,7 @@ export default function(node, arr) {
     } else {
       console.log('节点多余')
       var update = this.selectAll(node).data(arr)
-      var exit = update.exit().remove()
+      // var exit = update.exit().remove()
       return update
     }
   } else {

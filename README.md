@@ -70,3 +70,7 @@ npm install
 ``` node
   $ npm install --save-dev d3@5.7.0
 ```
+
+> other
+
+&emsp;在参考其他资料时遇到一个关于自己创建 node_modules 的问题，即自己在原有依赖的基础上自己创建一个新的 function ，在此需要说明一下，当创建完此方法后一定要在此文件夹下的 index.js 中做函数引用后方可在代码中调用此方法，否则程序会报 undefined
