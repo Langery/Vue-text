@@ -24,7 +24,7 @@ export default {
       intranetPost(sampleGraph, sendData)
         .then(data => {
           // console.log(data)
-          this.dealData(data.result)
+          this.forData(data.result)
           // this.init(data.result)
         })
         .catch(reason => { console.log(reason) })
@@ -106,9 +106,11 @@ export default {
       }
       // console.log(sendData)
       // console.log(setData)
-      // var postData = this.dealData(sendData)
+      var postData = this.forData(sendData)
+      // console.log(postData[0])
 
-      var hierarchyData = d3.hierarchy(setData)
+      // var hierarchyData = d3.hierarchy(setData)
+      var hierarchyData = d3.hierarchy(postData)
 
       var tree = d3.tree()
                   .size([height - 100, width - 100])
@@ -163,46 +165,56 @@ export default {
         })
         .text((d) => { return d.data.name })
     },
-    dealData (data) {
-      // console.log(data)
-      // var links = data.links
-      // var nodes = data.nodes
-      // var newArr = []
+    forData (data) {
+      var links = data.links
+      var newLinks = []
+      var newObj = {
+        name: '',
+        children: []
+      }
+      var newArr = []
 
-      // var linkFun = (links) => {
-      //   link.forEach(item => {
-      //     item.children.forEach((i) => {
-      //       i.children.forEach((p) => {
-      //         p.children.forEach((o) => {})
-      //       })
-      //     })
-      //   })
-      // }
-      // console.log(links)
+      links.map(item => {
+        var pushI = {
+          name: item.__s,
+          children: [ {name: item.__d} ]
+        }
+        newLinks.push(pushI)
+      })
 
-      // function add (a, b) {
-      //   return a + b
-      // }
-      // function addcurry (a) {
-      //   return function (b) {
-      //     return a + b
-      //   }
-      // }
-      // addcurry(2)(3)
-
-      // function curry (fn, arrty = fn.length) {
-      //   return (function nextCurry (pre) {
-      //     return function curried (...nex) {
-      //       var args = [...pre, ...nex]
-      //       return args.length >= arrty ? fn(...args) : nextCurry(args)
-      //     }
-      //   })([])
-      // }
-
-      // links.forEach(item => {
-      //                     开始      结束
-      //   console.log([item.__s, item.__d])
-      // })
+      function returnFun (arr) {
+        arr.reduce((prev, cur, index) => {
+          // console.log(prev, cur, index)
+          if (cur.name === prev.name) {
+            newObj.name = cur.name
+            newObj.children.push(prev.children[0])
+            newObj.children.push(cur.children[0])
+            return cur
+          } else {
+            newArr.push(newObj)
+            newObj = {
+              name: '',
+              children: []
+            }
+            return cur
+          }
+        })
+      }
+      var getT = returnFun(newLinks)
+      newArr = newArr.filter(item => { return item.name !== '' })
+      // console.log(newArr)
+      var newMap = new Map()
+      newArr.forEach(item => { newMap.set(item.name, item.children) })
+      console.log(newMap)
+      console.log(newMap._c)
+      // console.log(newMap.get(96))
+      newMap.get(96).forEach(item => {
+        newMap.forEach((value, key) => {
+          console.log(key)
+          console.log(item)
+        })
+      })
+      console.log(newMap.get(96))
     }
   }
 }
