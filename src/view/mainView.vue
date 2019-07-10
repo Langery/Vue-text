@@ -11,7 +11,7 @@
     <!-- <text-ace></text-ace> -->
     <!-- <data-btn></data-btn> -->
     <!-- <ace-text></ace-text> -->
-    <tree-diagram></tree-diagram>
+    <!-- <tree-diagram></tree-diagram> -->
     <!-- <test-dia></test-dia> -->
   </div>
 </template>
