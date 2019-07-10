@@ -5,7 +5,7 @@
 
 <script>
 import * as d3 from 'd3'
-import { sampleGraph } from '@/server/index'
+import { multiExpand } from '@/server/index' // sampleGraph
 import { intranetPost } from '@/common/commonFun'
 
 export default {
@@ -18,14 +18,26 @@ export default {
   },
   methods: {
     getSampleGraph () {
-      const sendData = {  
-        graphName: 'Knowledge'
+      // http://10.61.2.206:8123/?query=select * from out(Knowledge,1,3) limit 100 format Graph
+      // graphName: 'Knowledge', limitNum: 10, hopNum: 3, arrayV: 1
+      // const sendData = { graphName: 'Knowledge' }
+      const sendOther = {
+        graphName: 'Knowledge',
+        limitNum: 5,
+        hopNum: 3,
+        arrayV: [1]
       }
-      intranetPost(sampleGraph, sendData)
+      // intranetPost(sampleGraph, sendData)
+      //   .then(data => {
+      //     // console.log(data)
+      //     // this.forData(data.result)
+      //     this.init(data.result)
+      //   })
+      //   .catch(reason => { console.log(reason) })
+      intranetPost(multiExpand, sendOther)
         .then(data => {
-          // console.log(data)
-          this.forData(data.result)
-          // this.init(data.result)
+          console.log(data.result)
+          this.init(data.result)
         })
         .catch(reason => { console.log(reason) })
     },
@@ -41,7 +53,7 @@ export default {
 
       var svg = d3.select('.skill')
                   .append('svg')
-                  .attr({'width': 900, 'height': 500})
+                  .attr({'width': 900, 'height': 1400})
       var width = svg.attr('width')
       var height = svg.attr('height')
       var g = svg.append('g')
@@ -105,12 +117,12 @@ export default {
         ]
       }
       // console.log(sendData)
-      // console.log(setData)
+      console.log(setData)
       var postData = this.forData(sendData)
-      // console.log(postData[0])
+      console.log(postData)
 
       // var hierarchyData = d3.hierarchy(setData)
-      var hierarchyData = d3.hierarchy(postData)
+      var hierarchyData = d3.hierarchy(postData[0])
 
       var tree = d3.tree()
                   .size([height - 100, width - 100])
@@ -184,7 +196,6 @@ export default {
 
       function returnFun (arr) {
         arr.reduce((prev, cur, index) => {
-          // console.log(prev, cur, index)
           if (cur.name === prev.name) {
             newObj.name = cur.name
             newObj.children.push(prev.children[0])
@@ -200,21 +211,47 @@ export default {
           }
         })
       }
-      var getT = returnFun(newLinks)
+      returnFun(newLinks)
       newArr = newArr.filter(item => { return item.name !== '' })
-      // console.log(newArr)
+
+      var deleteKey = []
+
       var newMap = new Map()
       newArr.forEach(item => { newMap.set(item.name, item.children) })
-      console.log(newMap)
-      console.log(newMap._c)
-      // console.log(newMap.get(96))
-      newMap.get(96).forEach(item => {
-        newMap.forEach((value, key) => {
-          console.log(key)
-          console.log(item)
-        })
+      // console.log(newArr)
+      // console.log(newMap)
+
+      newMap._c.forEach(item => {
+        for (var index in item) { // name
+          const mapIndex = item[index]
+          mapIndex.children = []
+          if (newMap.size > 1) {
+            newMap.forEach((value, key) => {
+              if (mapIndex.name === key) {
+                mapIndex.children = value
+                deleteKey.push(key)
+              }
+            })
+            deleteKey = Array.from(new Set([...deleteKey]))
+            for (var i in deleteKey) newMap.delete(deleteKey[i])
+            deleteKey = []
+          }
+        }
       })
-      console.log(newMap.get(96))
+
+      newMap = [...newMap]
+      var otherObj = []
+      
+      for (var item in newMap) {
+        const objP = {
+          name: newMap[item][0],
+          children: newMap[item][1]
+        }
+        otherObj.push(objP)
+      }
+      console.log(otherObj)
+
+      return otherObj
     }
   }
 }
