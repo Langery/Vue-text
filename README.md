@@ -63,6 +63,7 @@ npm install
 &emsp;参考资料：
   1. [D3.js 入门系列 — 选择元素和绑定数据](https://www.cnblogs.com/tanlujia/p/6376686.html)
   2. [桔子桑](http://www.ecoblog.online/#/web/list?catid=6)
+  3. [d3.js - force力学图](https://www.jianshu.com/p/cd618edc11a8)
 
 > 引入和使用
 
