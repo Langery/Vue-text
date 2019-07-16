@@ -13,6 +13,7 @@
     <!-- <ace-text></ace-text> -->
     <!-- <tree-diagram></tree-diagram> -->
     <!-- <test-dia></test-dia> -->
+    <!-- <transit-animat></transit-animat> -->
   </div>
 </template>
 
@@ -31,7 +32,8 @@ export default {
     'DataBtn': () => import('@/view/components/dataBtn'),
     'AceText': () => import('@/view/components/aceText'),
     'TreeDiagram': () => import('@/view/components/D3/treeDiagram'),
-    'TestDia': () => import('@/view/components/D3/testDia')
+    'TestDia': () => import('@/view/components/D3/testDia'),
+    'TransitAnimat': () => import('@/view/components/transitAnimat')
   },
   created () {
   },
