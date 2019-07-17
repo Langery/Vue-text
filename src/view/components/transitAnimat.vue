@@ -33,6 +33,7 @@ export default {
 .list-item {
   display: block;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 .list-enter-active, .list-leave-active {
   transition: all 1s;
