@@ -37,7 +37,8 @@ export default {
       intranetPost(multiExpand, sendOther)
         .then(data => {
           console.log(data.result)
-          this.init(data.result)
+          this.recursTraver(data.result)
+          // this.init(data.result)
         })
         .catch(reason => { console.log(reason) })
     },
@@ -118,7 +119,8 @@ export default {
       }
       // console.log(sendData)
       console.log(setData)
-      var postData = this.forData(sendData)
+      // var postData = this.forData(sendData)
+      // var postData = this.recursTraver(sendData)
       console.log(postData)
 
       // var hierarchyData = d3.hierarchy(setData)
@@ -177,6 +179,76 @@ export default {
         })
         .text((d) => { return d.data.name })
     },
+    recursTraver (data) {
+      console.log(data)
+      var links = data.links
+      var newLinks = []
+      links.map(item => {
+        var pushI = {
+          name: item.__s,
+          children: [ {name: item.__d} ]
+        }
+        newLinks.push(pushI)
+      })
+      // console.log(newLinks)
+      var linksMap = new Map()
+      newLinks.forEach(item => { linksMap.set(item.children, item.name) })
+      console.log(linksMap)
+      
+      var creatArr = []
+      function returnData (map, creatArr) {
+        var i = 0
+        if (map) {
+          map.forEach((key, value) => {
+            if (creatArr.length === 0) {
+              const pushI = {
+                name: key,
+                children: [
+                  {
+                    name: value[0].name,
+                    children: []
+                  }
+                ]
+              }
+              creatArr.push(pushI)
+              map.delete(value)
+              returnData(map, creatArr)
+            } else {
+              for (var i in creatArr) {
+                if (creatArr[i].name === key) {
+                  creatArr[i].children.push(value[0])
+                  map.delete(value)
+                  returnData(map, creatArr)
+                } else {
+                  // for (var o in creatArr[i].children) {
+                  //   if (creatArr[i].children[o].name === key) {
+                  //     creatArr[i].children[o].children.push(value[0])
+                  //     map.delete(value)
+                  //     returnData(map, creatArr) 
+                  //   }
+                  // }
+                  console.log(222)
+                  // var newPush = {
+                  //   name: key,
+                  //   children: [ { name: value[0].name } ]
+                  // }
+                  // creatArr.push(newPush)
+                  // map.delete(value)
+                  // returnData(map, creatArr)
+                }
+              }
+            }
+          })
+        }
+
+        return creatArr
+      }
+      returnData(linksMap, creatArr)
+
+      // console.log(numArr)
+      console.log(creatArr)
+
+    },
     forData (data) {
       var links = data.links
       var newLinks = []
@@ -198,7 +270,7 @@ export default {
         arr.reduce((prev, cur, index) => {
           if (cur.name === prev.name) {
             newObj.name = cur.name
-            newObj.children.push(prev.children[0])
+            if (newObj.length === 0) newObj.children.push(prev.children[0])
             newObj.children.push(cur.children[0])
             return cur
           } else {
@@ -210,8 +282,10 @@ export default {
             return cur
           }
         })
+        newArr.push(newObj)
       }
       returnFun(newLinks)
+      console.log(newArr)
       newArr = newArr.filter(item => { return item.name !== '' })
 
       var deleteKey = []
