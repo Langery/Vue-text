@@ -183,21 +183,98 @@ export default {
       console.log(data)
       var links = data.links
       var newLinks = []
+      var treeList = []
       links.map(item => {
         var pushI = {
           name: item.__s,
           children: [ {name: item.__d} ]
         }
         newLinks.push(pushI)
+        var pushT = {
+          id: item.__s,
+          children: item.__d
+        }
+        treeList.push(pushT)
       })
       // console.log(newLinks)
+      // console.log(treeList)
+      console.log(treeList)
+
       var linksMap = new Map()
       newLinks.forEach(item => { linksMap.set(item.children, item.name) })
-      console.log(linksMap)
+      // console.log(linksMap)
       
+      var graph = treeList.reduce((r, a) => {
+        r[a.id] = r[a.id] || []
+        r[a.id].push(a)
+        return r
+      }, Object.create(null))
+
+      // console.log(graph)
+
+      var already_append = []
+      function new_child (nodeId) {
+        var child = {
+          id: nodeId,
+          children: []
+        }
+        return child
+      }
+      var new_root = new_child(links[0].__s)
+      already_append.push(links[0].__s)
+
+      // console.log(new_root)
+      var inArray = function isInArray (arr,value) {
+        for (var i = 0; i < arr.length; i++) if (value === arr[i]) return true
+        return false
+      }
+      function do_bfs (already_append, graph, node_dict) {
+        var Flag = false
+        var list = graph[node_dict['id']]
+        for (var i in list) {
+          if (!inArray(already_append, list[i].children)) {
+            already_append.push(list[i].children)
+            node_dict['children'].push(new_child(list[i].children))
+            Flag = true
+          }
+        }
+
+        // console.log(node_dict)
+        if (!Flag) return
+        for (var index in node_dict['children']) do_bfs(already_append, graph, node_dict['children'][index])
+        return
+      }
+
+      do_bfs(already_append, graph, new_root)
+      console.log(new_root) // 最终值
+
+      // fail
+      function treeData (list) {
+        let map = {}
+        list.forEach(item => {
+          if (!map[item.id]) {
+            map[item.id] = item
+          }
+        })
+      
+        list.forEach(item => {
+          if (item.parent_id !== 0) {
+            if (map[item.parent_id].children) {
+              map[item.parent_id].children.push(item)
+            } else {
+              map[item.parent_id].children = [item]
+            }
+          }
+        })
+
+        console.log(map)
+
+        return map
+
+      }
+      // fail
       var creatArr = []
       function returnData (map, creatArr) {
-        var i = 0
         if (map) {
           map.forEach((key, value) => {
             if (creatArr.length === 0) {
@@ -227,7 +304,7 @@ export default {
                   //     returnData(map, creatArr) 
                   //   }
                   // }
-                  console.log(222)
+                  // console.log(222)
                   // var newPush = {
                   //   name: key,
                   //   children: [ { name: value[0].name } ]
@@ -243,11 +320,12 @@ export default {
 
         return creatArr
       }
-      returnData(linksMap, creatArr)
+      // returnData(linksMap, creatArr)
+      // treeData(treeList)
+      // console.log(treeData(treeList))
 
       // console.log(numArr)
-      console.log(creatArr)
-
+      // console.log(creatArr)
     },
     forData (data) {
       var links = data.links
