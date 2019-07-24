@@ -11,9 +11,10 @@
     <!-- <text-ace></text-ace> -->
     <!-- <data-btn></data-btn> -->
     <!-- <ace-text></ace-text> -->
-    <tree-diagram></tree-diagram>
+    <!-- <tree-diagram></tree-diagram> -->
     <!-- <test-dia></test-dia> -->
     <!-- <transit-animat></transit-animat> -->
+    <radial-dendrogram></radial-dendrogram>
   </div>
 </template>
 
@@ -33,7 +34,8 @@ export default {
     'AceText': () => import('@/view/components/aceText'),
     'TreeDiagram': () => import('@/view/components/D3/treeDiagram'),
     'TestDia': () => import('@/view/components/D3/testDia'),
-    'TransitAnimat': () => import('@/view/components/transitAnimat')
+    'TransitAnimat': () => import('@/view/components/transitAnimat'),
+    'RadialDendrogram': () => import('@/view/components/D3/radialDendrogram')
   },
   created () {
   },

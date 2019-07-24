@@ -37,8 +37,8 @@ export default {
       intranetPost(multiExpand, sendOther)
         .then(data => {
           console.log(data.result)
-          this.recursTraver(data.result)
-          // this.init(data.result)
+          // this.recursTraver(data.result)
+          this.init(data.result)
         })
         .catch(reason => { console.log(reason) })
     },
@@ -59,7 +59,7 @@ export default {
       var height = svg.attr('height')
       var g = svg.append('g')
                   .attr('transform', 'translate(' + marge.top + ',' + marge.left + ')')
-      var setData = {
+      /* var setData = {
         'name': '中国',
         'children':
         [
@@ -116,15 +116,13 @@ export default {
             ]
           }
         ]
-      }
-      // console.log(sendData)
-      console.log(setData)
-      // var postData = this.forData(sendData)
-      // var postData = this.recursTraver(sendData)
+      } */
+      // console.log(setData)
+      var postData = this.recursTraver(sendData)
       console.log(postData)
 
       // var hierarchyData = d3.hierarchy(setData)
-      var hierarchyData = d3.hierarchy(postData[0])
+      var hierarchyData = d3.hierarchy(postData)
 
       var tree = d3.tree()
                   .size([height - 100, width - 100])
@@ -224,7 +222,7 @@ export default {
       already_append.push(links[0].__s)
 
       // console.log(new_root)
-      var inArray = function isInArray (arr,value) {
+      var inArray = function isInArray (arr, value) {
         for (var i = 0; i < arr.length; i++) if (value === arr[i]) return true
         return false
       }
@@ -247,15 +245,12 @@ export default {
 
       do_bfs(already_append, graph, new_root)
       console.log(new_root) // 最终值
+      return new_root
 
       // fail
-      function treeData (list) {
+      /* function treeData (list) {
         let map = {}
-        list.forEach(item => {
-          if (!map[item.id]) {
-            map[item.id] = item
-          }
-        })
+        list.forEach(item => { if (!map[item.id]) map[item.id] = item })
       
         list.forEach(item => {
           if (item.parent_id !== 0) {
@@ -271,9 +266,9 @@ export default {
 
         return map
 
-      }
+      } */
       // fail
-      var creatArr = []
+      /* var creatArr = []
       function returnData (map, creatArr) {
         if (map) {
           map.forEach((key, value) => {
@@ -325,7 +320,7 @@ export default {
       // console.log(treeData(treeList))
 
       // console.log(numArr)
-      // console.log(creatArr)
+      // console.log(creatArr) */
     },
     forData (data) {
       var links = data.links
