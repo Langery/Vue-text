@@ -1,11 +1,12 @@
 <template>
-  <div id="skill">
+  <div>
+    <svg></svg>
   </div>
 </template>
 
 <script>
 import * as d3 from 'd3'
-import { multiExpand } from '@/server/index' // sampleGraph
+import { multiExpand } from '@/server/index'
 import { intranetPost } from '@/common/commonFun'
 
 export default {
@@ -13,7 +14,8 @@ export default {
     return {}
   },
   mounted () {
-    this.getSampleGraph()
+    // this.getSampleGraph()
+    this.drawArc()
   },
   methods: {
     getSampleGraph () {
@@ -27,96 +29,62 @@ export default {
         .then(data => {
           console.log(data.result)
           // this.recursTraver(data.result)
-          this.init(data.result)
+          this.init(this.recursTraver(data.result))
         })
         .catch(reason => { console.log(reason) })
     },
-    init (sendData) {
-      var data = this.recursTraver(sendData)
+    drawArc() {
+      var marge = {top:0, bottom:100, left:120, right:100}
+      var svg = d3.select('svg')
+      svg.attr('width', 300)
+          .attr('height', 300)
+      var width = svg.attr('width')
+      var height = svg.attr('500px')
+      var g = svg.append('g')
+                .attr('transform', 'translate(' + marge.top + ',' + marge.left + ')')
+
+      var sendData = [15, 20, 25, 40]
+
+      // ???
+      var colorScale = d3.scaleOrdinal()
+                        .domain(d3.range(sendData.length))
+                        .range(d3.schemeSet3 ) // https://github.com/d3/d3-scale-chromatic/blob/v1.3.3/README.md
+      console.log(colorScale)
+
+      var arc = d3.arc()
+                  .innerRadius(0)
+                  .outerRadius(100)
+      var pie = d3.pie()
+      var pieData = pie(sendData)
+      console.log(pieData)
+      var gs = g.selectAll('.g')
+                .data(pieData)
+                .enter()
+                .append('g')
+                .attr('transform','translate('+ width/2 +','+ height/2 + ')')
+
+      gs.append('path')
+        .attr('d', (d) => {
+          return arc(d)
+        })
+        .attr('fill', (d, i) => {
+          return colorScale(i)
+        })
+    },
+    init (data) {
       console.log(data)
-      var width = document.getElementById('skill').clientWidth
-      var height = document.getElementById('skill').clientHeight
-      var radius = width / 2
-      var treeType = d3.cluster().size([2 * Math.PI, radius - 100])
-      const root = treeType(d3.hierarchy(data)
-                          .sort((a, b) => {
-                            return (a.height - b.height) || a.data.name.toString().localeCompare(b.data.name.toString())
-                          }))
-      console.log(root)
-      const svg = d3.create('svg')
-        .style('max-width', '100%')
-        .style('height', 'auto')
-        .style('font', '10px sans-serif')
-        .style('margin', '5px')
-    
-      const link = svg.append('g')
-        .attr('fill', 'none')
-        .attr('stroke', '#555')
-        .attr('stroke-opacity', 0.4)
-        .attr('stroke-width', 1.5)
-        .selectAll('path')
-        .data(root.links())
-        .enter().append('path')
-        .attr('d', d3.linkRadial()
-                    .angle(d => d.x)
-                    .radius(d => d.y))
-    
-      const node = svg.append('g')
-        .attr('stroke-linejoin', 'round')
-        .attr('stroke-width', 3)
-        .selectAll('g')
-        .data(root.descendants().reverse())
-        .enter().append('g')
-        .attr('transform', d => `
-          rotate(${d.x * 180 / Math.PI - 90})
-          translate(${d.y},0)
-        `)
-    
-      node.append('circle')
-        .attr('fill', d => d.children ? '#555' : '#999')
-        .attr('r', 2.5)
-    
-      node.append('text')
-        .attr('dy', '0.31em')
-        .attr('x', d => d.x < Math.PI === !d.children ? 6 : -6)
-        .attr('text-anchor', d => d.x < Math.PI === !d.children ? 'start' : 'end')
-        .attr('transform', d => d.x >= Math.PI ? 'rotate(180)' : null)
-        .text(d => d.data.name)
-        .filter(d => d.children)
-        .clone(true).lower()
-        .attr('stroke', 'white')
-
-      return svg.node()
-
-      svg.attr('viewBox', this.autoBox)
+      // console.log(d3)
     },
-    autoBox() {
-      const {x, y, width, height} = this.getBBox()
-      return [x, y, width, height]
-    },
-    // 处理数据
     recursTraver (data) {
-      // console.log(data)
       var links = data.links
-      var newLinks = []
       var treeList = []
       links.map(item => {
-        var pushI = {
-          name: item.__s,
-          children: [ {name: item.__d} ]
-        }
-        newLinks.push(pushI)
         var pushT = {
           id: item.__s,
           children: item.__d
         }
         treeList.push(pushT)
       })
-      console.log(treeList)
-
-      var linksMap = new Map()
-      newLinks.forEach(item => { linksMap.set(item.children, item.name) })
-      // console.log(linksMap)
       
       var graph = treeList.reduce((r, a) => {
         r[a.id] = r[a.id] || []
@@ -124,7 +92,6 @@ export default {
         return r
       }, Object.create(null))
 
-      // console.log(graph)
 
       var already_append = []
       function new_child (nodeId) {
@@ -137,7 +104,6 @@ export default {
       var new_root = new_child(links[0].__s)
       already_append.push(links[0].__s)
 
-      // console.log(new_root)
       var inArray = function isInArray (arr, value) {
         for (var i = 0; i < arr.length; i++) if (value === arr[i]) return true
         return false
