@@ -14,8 +14,8 @@ export default {
     return {}
   },
   mounted () {
-    // this.getSampleGraph()
-    this.drawArc()
+    this.getSampleGraph()
+    // this.drawArc()
   },
   methods: {
     getSampleGraph () {
@@ -33,8 +33,9 @@ export default {
         })
         .catch(reason => { console.log(reason) })
     },
-    drawArc() {
-      var marge = {top:0, bottom:100, left:120, right:100}
+    // 饼状图
+    drawArc () {
+      var marge = {top: 0, bottom: 100, left: 120, right: 100}
       var svg = d3.select('svg')
       svg.attr('width', 300)
           .attr('height', 300)
@@ -48,7 +49,7 @@ export default {
       // ???
       var colorScale = d3.scaleOrdinal()
                         .domain(d3.range(sendData.length))
-                        .range(d3.schemeSet3 ) // https://github.com/d3/d3-scale-chromatic/blob/v1.3.3/README.md
+                        .range(d3.schemeSet3) // https://github.com/d3/d3-scale-chromatic/blob/v1.3.3/README.md
       console.log(colorScale)
 
       var arc = d3.arc()
@@ -61,7 +62,7 @@ export default {
                 .data(pieData)
                 .enter()
                 .append('g')
-                .attr('transform','translate('+ width/2 +','+ height/2 + ')')
+                .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
 
       gs.append('path')
         .attr('d', (d) => {
@@ -91,7 +92,6 @@ export default {
         r[a.id].push(a)
         return r
       }, Object.create(null))
-
 
       var already_append = []
       function new_child (nodeId) {
