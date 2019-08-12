@@ -1,10 +1,12 @@
 <template>
   <div class="mainView">
-    <h1>彩蛋</h1>
-    <p>点击一次和双击</p>
+    <!-- <h1>彩蛋</h1>
+    <p>点击一次和双击</p> -->
     <!--  @dblclick="second()" -->
-    <button @click="first()">点击一下</button>
-    <span>{{say}}</span>
+    
+    <!-- <button @click="first()">点击一下</button>
+    <span>{{say}}</span> -->
+
     <!-- <one
       v-on:one="two"
     ></one> -->

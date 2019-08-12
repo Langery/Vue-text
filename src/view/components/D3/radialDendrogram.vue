@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <svg></svg>
-  </div>
+  <svg></svg>
 </template>
 
 <script>
@@ -27,7 +25,7 @@ export default {
       }
       intranetPost(multiExpand, sendOther)
         .then(data => {
-          console.log(data.result)
+          // console.log(data.result)
           // this.recursTraver(data.result)
           this.init(this.recursTraver(data.result))
         })
@@ -75,6 +73,64 @@ export default {
     init (data) {
       console.log(data)
       // console.log(d3)
+      // (a.height - b.height) || a.data.name.localeCompare(b.data.name)
+      var cluster = d3.hierarchy(data)
+                      .sort((a, b) => {
+                        (a.height - b.height) || a.data.name.toString().localeCompare(b.data.name.toString())
+                      })
+      
+      var width = 975
+      var height = 500
+      var radius = width / 2
+      // var tree = d3.cluster().size([2 * Math.PI, radius - 100])
+      var tree = d3.cluster()
+                  .size([Math.PI * 2, radius - 100])
+      var treeData = tree(cluster)
+      console.log(cluster)
+      const svg = d3.select('svg')
+                    .style('width', '1000px')
+                    .style('height', '500px')
+                    .style('font', '10px sans-serif')
+                    .style('margin', '5px')
+
+      const link = svg.append('g')
+                      .attr('fill', 'none')
+                      .attr('stroke', '#555')
+                      .attr('stroke-opacity', 0.4)
+                      .attr('stroke-width', 1.5)
+                      .selectAll('path')
+                      .data(treeData.links())
+                      .enter().append('path')
+                      .attr('d', d3.linkRadial()
+                          .angle(d => d.x)
+                          .radius(d => d.y))
+      const node = svg.append('g')
+                      .attr('stroke-linejoin', 'round')
+                      .attr('stroke-width', 3)
+                      .selectAll('g')
+                      .data(treeData.descendants().reverse())
+                      .enter().append('g')
+                      .attr('transform', d => `
+                        rotate(${d.x * 180 / Math.PI - 90})
+                        translate(${d.y}, 0)
+                      `)
+      node.append('circle')
+          .attr('fill', d => d.children ? '#555' : '#999')
+          .attr('r', 2.5)
+  
+      node.append('text')
+          .attr('dy', '0.31em')
+          .attr('x', d => d.x < Math.PI === !d.children ? 6 : -6)
+          .attr('text-anchor', d => d.x < Math.PI === !d.children ? 'start' : 'end')
+          .attr('transform', d => d.x >= Math.PI ? 'rotate(180)' : null)
+          .text(d => d.data.name)
+          .filter(d => d.children)
+          .clone(true).lower()
+          .attr('stroke', 'white')
+    },
+    project (x, y) {
+      var angle = (x - 90) / 180 * Math.PI, radius = y
+      return [radius * Math.cos(angle), radius * Math.sin(angle)]
     },
     recursTraver (data) {
       var links = data.links
