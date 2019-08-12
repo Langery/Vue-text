@@ -68,6 +68,7 @@ npm install
   3. [d3.js - force力学图](https://www.jianshu.com/p/cd618edc11a8)
   4. [D3 入门笔记](https://www.cnblogs.com/WEI-web/p/7209246.html)
   5. [D3力导向图及树状布局变换](https://blog.csdn.net/dlwbill/article/details/78083701)
+  6. [D3 API Reference](https://github.com/d3/d3/blob/master/API.md)
 
 > 引入和使用
 
@@ -76,6 +77,6 @@ npm install
   $ npm install --save-dev d3@5.7.0
 ```
 
-> other
+> 关于扩展自定义 node_modules 模块
 
 &emsp;在参考其他资料时遇到一个关于自己创建 node_modules 的问题，即自己在原有依赖的基础上自己创建一个新的 function ，在此需要说明一下，当创建完此方法后一定要在此文件夹（同级文件夹）下的 index.js 中做函数引用后方可在代码中调用此方法，否则程序会报 undefined
