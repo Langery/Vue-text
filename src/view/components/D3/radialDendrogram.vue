@@ -128,10 +128,10 @@ export default {
           .clone(true).lower()
           .attr('stroke', 'white')
     },
-    project (x, y) {
-      var angle = (x - 90) / 180 * Math.PI, radius = y
-      return [radius * Math.cos(angle), radius * Math.sin(angle)]
-    },
+    // project (x, y) {
+    //   var angle = (x - 90) / 180 * Math.PI, radius = y
+    //   return [radius * Math.cos(angle), radius * Math.sin(angle)]
+    // },
     recursTraver (data) {
       var links = data.links
       var treeList = []
