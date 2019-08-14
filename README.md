@@ -69,6 +69,8 @@ npm install
   4. [D3 入门笔记](https://www.cnblogs.com/WEI-web/p/7209246.html)
   5. [D3力导向图及树状布局变换](https://blog.csdn.net/dlwbill/article/details/78083701)
   6. [D3 API Reference](https://github.com/d3/d3/blob/master/API.md)
+  7. [svg给出两点坐标连一条曲线](https://www.jianshu.com/p/30f1ee0809d7)
+  8. [D3 Cluster Dendrogram](https://observablehq.com/@awring/d3-cluster-dendrogram)
 
 > 引入和使用
 
