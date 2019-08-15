@@ -19,7 +19,7 @@ export default {
       const sendOther = {
         graphName: 'Knowledge',
         limitNum: 3,
-        hopNum: 2,
+        hopNum: 1,
         arrayV: [1]
       }
       intranetPost(multiExpand, sendOther)
@@ -158,31 +158,40 @@ export default {
     },
     dataDeal (data) {
       var keyName = []
-      data.nodes.forEach(item => { keyName.push(item.__key) })
+      data.nodes.forEach(item => { keyName.push(item.__v) })
 
-      var newLinks = []
       data.links.forEach(item => {
-        var pushI = {
-          __s: item.__d,
-          __d: item.__s,
-          src: item.dst,
-          dst: item.src,
-          src_type: item.dst_type,
-          dst_type: item.src_type,
-          type: item.type,
-          __e: item.__e
-        }
-        newLinks.push(pushI)
+        data.nodes.forEach((jtem, index) => {
+          if (item.__s == jtem.__v) item.sourceIndex = index
+          if (item.__d == jtem.__v) item.targetIndex = index
+        })
       })
-      console.log(newLinks)
-      var sendLinks = data.links.concat(newLinks)
-      console.log(sendLinks)
+
+      // var newLinks = []
+      // data.links.forEach(item => {
+      //   var pushI = {
+      //     __s: item.__d,
+      //     __d: item.__s,
+      //     src: item.dst,
+      //     dst: item.src,
+      //     src_type: item.dst_type,
+      //     dst_type: item.src_type,
+      //     type: item.type,
+      //     __e: item.__e,
+      //     sourceIndex: item.targetIndex,
+      //     sourceIndex: item.sourceIndex
+      //   }
+      //   newLinks.push(pushI)
+      // })
+      // console.log(newLinks)
+      // var sendLinks = data.links.concat(newLinks)
+      // console.log(sendLinks)
 
       // .entries(data.links)
-      let nested = d3.nest().key(d => d.__s)
-                      .entries(sendLinks)
+      let nested = d3.nest().key(d => d.sourceIndex)
+                      .entries(data.links)
       console.log(nested)
-      let n = d3.max(nested, d => d3.max(d.values, x => x.__d)) + 1
+      let n = d3.max(nested, d => d3.max(d.values, x => x.targetIndex)) + 1
       let m = nested.length
       console.log(n, m)
       let matrix = []
@@ -197,7 +206,7 @@ export default {
         }
 
         x.values.forEach((d, j) => {
-          matrix[d.__s % m][d.__d % n] = 1
+          matrix[d.sourceIndex % m][d.targetIndex % n] = 1
         })
       })
       // console.log(nested)
@@ -206,7 +215,7 @@ export default {
       var newMatrix = []
       matrix.forEach(item => newMatrix.push(item))
       trueMatrix.forEach(item => newMatrix.push(item))
-      // console.log(newMatrix)
+      console.log(newMatrix)
       
       var max = newMatrix[0].length
       for (var i = 0; i < newMatrix.length; i++) {
