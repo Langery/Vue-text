@@ -71,6 +71,7 @@ npm install
   6. [D3 API Reference](https://github.com/d3/d3/blob/master/API.md)
   7. [svg给出两点坐标连一条曲线](https://www.jianshu.com/p/30f1ee0809d7)
   8. [D3 Cluster Dendrogram](https://observablehq.com/@awring/d3-cluster-dendrogram)
+  9. [【 D3.js 入门系列 --- 9.3 】 弦图的制作](http://blog.sina.com.cn/s/blog_663d9a1f0102w5gn.html)
 
 > 引入和使用
 
