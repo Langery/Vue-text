@@ -17,7 +17,7 @@
     <!-- <test-dia></test-dia> -->
     <!-- <transit-animat></transit-animat> -->
     <!-- <radial-dendrogram></radial-dendrogram> -->
-    <chord-dia></chord-dia>
+    <!-- <chord-dia></chord-dia> -->
   </div>
 </template>
 

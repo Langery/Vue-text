@@ -1,5 +1,7 @@
 <template>
-  <svg></svg>
+  <div id="canvas">
+    <svg></svg>
+  </div>
 </template>
 
 <script>
@@ -42,8 +44,10 @@ export default {
       // var data = data.slice(0, 11)
       console.log(data)
 
-      var height = 960
-      var width = 960
+      // var width = document.getElementById('canvas').clientWidth
+      // var height = document.getElementById('canvas').clientHeight
+      var width = 480
+      var height = 480
       var outerRadius = Math.min(width, height) * 0.5 - 30
       var innerRadius = outerRadius - 20
       
