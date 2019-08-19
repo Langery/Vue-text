@@ -123,6 +123,7 @@ export default {
 
       // var hierarchyData = d3.hierarchy(setData)
       var hierarchyData = d3.hierarchy(postData)
+      // var hierarchyData = d3.hierarchy(markData)
 
       var tree = d3.tree()
                   .size([height - 100, width - 100])
@@ -246,81 +247,6 @@ export default {
       do_bfs(already_append, graph, new_root)
       console.log(new_root) // 最终值
       return new_root
-
-      // fail
-      /* function treeData (list) {
-        let map = {}
-        list.forEach(item => { if (!map[item.id]) map[item.id] = item })
-      
-        list.forEach(item => {
-          if (item.parent_id !== 0) {
-            if (map[item.parent_id].children) {
-              map[item.parent_id].children.push(item)
-            } else {
-              map[item.parent_id].children = [item]
-            }
-          }
-        })
-
-        console.log(map)
-
-        return map
-
-      } */
-      // fail
-      /* var creatArr = []
-      function returnData (map, creatArr) {
-        if (map) {
-          map.forEach((key, value) => {
-            if (creatArr.length === 0) {
-              const pushI = {
-                name: key,
-                children: [
-                  {
-                    name: value[0].name,
-                    children: []
-                  }
-                ]
-              }
-              creatArr.push(pushI)
-              map.delete(value)
-              returnData(map, creatArr)
-            } else {
-              for (var i in creatArr) {
-                if (creatArr[i].name === key) {
-                  creatArr[i].children.push(value[0])
-                  map.delete(value)
-                  returnData(map, creatArr)
-                } else {
-                  // for (var o in creatArr[i].children) {
-                  //   if (creatArr[i].children[o].name === key) {
-                  //     creatArr[i].children[o].children.push(value[0])
-                  //     map.delete(value)
-                  //     returnData(map, creatArr) 
-                  //   }
-                  // }
-                  // console.log(222)
-                  // var newPush = {
-                  //   name: key,
-                  //   children: [ { name: value[0].name } ]
-                  // }
-                  // creatArr.push(newPush)
-                  // map.delete(value)
-                  // returnData(map, creatArr)
-                }
-              }
-            }
-          })
-        }
-
-        return creatArr
-      }
-      // returnData(linksMap, creatArr)
-      // treeData(treeList)
-      // console.log(treeData(treeList))
-
-      // console.log(numArr)
-      // console.log(creatArr) */
     },
     forData (data) {
       var links = data.links

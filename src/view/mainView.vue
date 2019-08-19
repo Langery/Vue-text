@@ -18,6 +18,7 @@
     <!-- <transit-animat></transit-animat> -->
     <!-- <radial-dendrogram></radial-dendrogram> -->
     <!-- <chord-dia></chord-dia> -->
+    <analysis-diagram></analysis-diagram>
   </div>
 </template>
 
@@ -39,7 +40,8 @@ export default {
     'TestDia': () => import('@/view/components/D3/testDia'),
     'TransitAnimat': () => import('@/view/components/transitAnimat'),
     'RadialDendrogram': () => import('@/view/components/D3/radialDendrogram'),
-    'ChordDia': () => import('@/view/components/D3/chordDia')
+    'ChordDia': () => import('@/view/components/D3/chordDia'),
+    'AnalysisDiagram': () => import('@/view/components/D3/analysisDiagram')
   },
   created () {
   },
