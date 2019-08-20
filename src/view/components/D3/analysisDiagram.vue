@@ -226,13 +226,15 @@ export default {
                   {
                     name: 'd3.axisTop',
                     value: 1
-                  },
-                  {
+                  }, {
                     name: 'd3.axisRight',
+                    value: 1
+                  }, {
+                    name: 'd3.axisBottom',
                     value: 1
                   }
                 ],
-                methodCount: 14
+                methodCount: 3
               },
               {
                 name: 'Brushes (d3-brush)',
@@ -240,13 +242,31 @@ export default {
                   {
                     name: 'd3.brush',
                     value: 1
-                  },
-                  {
+                  }, {
                     name: 'd3.brushX',
+                    value: 1
+                  }, {
+                    name: 'd3.brushY',
                     value: 1
                   }
                 ],
-                methodCount: 10
+                methodCount: 3
+              },
+              {
+                name: 'Chords (d3-color)',
+                children: [
+                  {
+                    name: 'd3.color',
+                    value: 1
+                  }, {
+                    name: '*color*.copy',
+                    value: 1
+                  }, {
+                    name: '*color*.rgb',
+                    value: 1
+                  }
+                ],
+                methodCount: 3
               }
             ]
           },
@@ -259,13 +279,15 @@ export default {
                   {
                     name: '*ease*',
                     value: 1
-                  },
-                  {
+                  }, {
                     name: 'd3.easeLinear',
+                    value: 1
+                  }, {
+                    name: 'd3.easePolyIn',
                     value: 1
                   }
                 ],
-                methodCount: 41
+                methodCount: 3
               },
               {
                 name: 'Transitions (d3-transition)',
@@ -273,13 +295,15 @@ export default {
                   {
                     name: '*selection*.transition',
                     value: 1
-                  },
-                  {
+                  }, {
                     name: '*selection*.interrupt',
+                    value: 1
+                  }, {
+                    name: 'd3.transition',
                     value: 1
                   }
                 ],
-                methodCount: 29
+                methodCount: 3
               }
             ]
           },
@@ -292,13 +316,15 @@ export default {
                   {
                     name: 'd3.dsvFormat',
                     value: 1
-                  },
-                  {
+                  }, {
                     name: '*dsv*.parse',
+                    value: 1
+                  }, {
+                    name: '*dsv*.parseRows',
                     value: 1
                   }
                 ],
-                methodCount: 17
+                methodCount: 3
               },
               {
                 name: 'Quadtrees (d3-quadtree)',
@@ -306,13 +332,15 @@ export default {
                   {
                     name: 'd3.quadtree',
                     value: 1
-                  },
-                  {
+                  }, {
                     name: '*quadtree*.x',
+                    value: 1
+                  }, {
+                    name: '*quadtree*.y',
                     value: 1
                   }
                 ],
-                methodCount: 16
+                methodCount: 3
               }
             ]
           },
@@ -328,15 +356,47 @@ export default {
                       {
                         name: 'd3.min',
                         value: 1
-                      },
-                      {
+                      }, {
                         name: 'd3.max',
+                        value: 1
+                      }, {
+                        name: 'd3.extent',
+                        value: 1
+                      }
+                    ]
+                  },
+                  {
+                    name: 'Search',
+                    children: [
+                      {
+                        name: 'd3.scan',
+                        value: 1
+                      }, {
+                        name: 'd3.bisect',
+                        value: 1
+                      }, {
+                        name: 'd3.bisectRight',
+                        value: 1
+                      }
+                    ]
+                  },
+                  {
+                    name: 'Transformations',
+                    children: [
+                      {
+                        name: 'd3.cross',
+                        value: 1
+                      }, {
+                        name: 'd3.merge',
+                        value: 1
+                      }, {
+                        name: 'd3.pairs',
                         value: 1
                       }
                     ]
                   }
                 ],
-                methodCount: 37
+                methodCount: 3
               },
               {
                 name: 'Collections (d3-collection)',
@@ -347,15 +407,47 @@ export default {
                       {
                         name: 'd3.keys',
                         value: 1
-                      },
-                      {
+                      }, {
                         name: 'd3.values',
+                        value: 1
+                      }, {
+                        name: 'd3.entries',
+                        value: 1
+                      }
+                    ]
+                  },
+                  {
+                    name: 'Maps',
+                    children: [
+                      {
+                        name: 'd3.map',
+                        value: 1
+                      }, {
+                        name: '*map*.has',
+                        value: 1
+                      }, {
+                        name: '*map*.get',
+                        value: 1
+                      }
+                    ]
+                  },
+                  {
+                    name: 'Sets',
+                    children: [
+                      {
+                        name: 'd3.set',
+                        value: 1
+                      }, {
+                        name: '*set*.has',
+                        value: 1
+                      }, {
+                        name: '*set*.add',
                         value: 1
                       }
                     ]
                   }
                 ],
-                methodCount: 32
+                methodCount: 3
               }
             ]
           },
@@ -368,13 +460,12 @@ export default {
                   {
                     name: 'd3.dispatch',
                     value: 1
-                  },
-                  {
+                  }, {
                     name: '*dispatch*.on',
                     value: 1
                   }
                 ],
-                methodCount: 5
+                methodCount: 2
               },
               {
                 name: 'Dragging (d3-drag)',
@@ -388,7 +479,7 @@ export default {
                     value: 1
                   }
                 ],
-                methodCount: 11
+                methodCount: 2
               }
             ]
           }
@@ -406,6 +497,7 @@ export default {
             .sort((a, b) => b.value - a.value)
         )
       var format = d3.format(',d')
+      let color = d3.scaleOrdinal().range(d3.schemeCategory10)
 
       // var width = document.getElementById('canvas').clientWidth
       // var height = document.getElementById('canvas').clientHeight
@@ -428,7 +520,6 @@ export default {
       // }
 
       // let color = setColorScheme(multicolor)
-      let color = d3.scaleOrdinal().range(d3.schemeCategory10)
 
       function setCircleColor(obj) {
         let depth = obj.depth
@@ -442,11 +533,13 @@ export default {
       const svg = d3
         .select('svg')
         .attr('viewBox', `-${width / 2} -${height / 2} ${width} ${height}`)
+        .style('font', '10px sans-serif')
         .style('display', 'block')
         .style('margin', '0 -14px')
         .style('background', color(0))
         .style('cursor', 'pointer')
         .on('click', () => zoom(root))
+        .attr('text-anchor', 'middle')
 
       const node = svg
         .append('g')
@@ -455,8 +548,14 @@ export default {
         .join('circle')
         .attr('fill', setCircleColor)
         .attr('pointer-events', d => (!d.children ? 'none' : null))
-        // .on('mouseover', () => { d3.select(this).attr('stroke', '#000') })
-        // .on('mouseout', () => { d3.select(this).attr('stroke', null) })
+        // .on('mouseover', () => {
+        //   var that = this
+        //   d3.select(that).attr('stroke', '#000')
+        // })
+        // .on('mouseout', () => {
+        //   var that = this
+        //   d3.select(this).attr('stroke', null)
+        // })
         .on('click', d => focus !== d && (zoom(d), d3.event.stopPropagation()))
 
       node.append('title').text(
@@ -471,14 +570,28 @@ export default {
       const label = svg
         .append('g')
         .style('font-family', 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif')
+        .style('overflow', 'hidden')
         .attr('pointer-events', 'none')
         .attr('text-anchor', 'middle')
         .selectAll('text')
         .data(root.descendants())
         .join('text')
-        .style('fill-opacity', d => (d.parent === root ? 1 : 0))
-        .style('display', d => (d.parent === root ? 'inline' : 'none'))
+        // .style('fill-opacity', d => (d.parent === root ? 1 : 0))
+        // .style('display', d => (d.parent === root ? 'inline' : 'none'))
         .text(d => d.data.name)
+
+      const leaf = node.filter(d => !d.children)
+      console.log(leaf)
+      leaf.append("text")
+          .attr("clip-path", d => d.clipUid)
+          .selectAll("tspan")
+          .data(d => d.data.name.split(/(?=[A-Z][^A-Z])/g))
+          .join("tspan")
+          .attr("x", 0)
+          .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.8}em`)
+          .style('fill-opacity', d => (d.parent === root ? 1 : 0))
+          .style('display', d => (d.parent === root ? 'inline' : 'none'))
+          .text(d => d)
 
       zoomTo([root.x, root.y, root.r * 2])
 
@@ -511,17 +624,17 @@ export default {
 
         label
           .filter(d => {
-            return d.parent === focus || this.style.display === 'inline'
+            return (d.parent === focus || this.style.display === 'inline')
           })
           .transition(transition)
-          .style('fill-opacity', d => (d.parent === focus ? 1 : 0))
-          .on('start', d => {
-            if (d.parent === focus) this.style.display = 'inline'
-          })
-          .on('end', d => {
-            if (d.parent !== focus) this.style.display = 'none'
-          })
-          .text(d => d)
+            .style('fill-opacity', d => (d.parent === focus ? 1 : 0))
+            .on('start', d => {
+              if (d.parent === focus) this.style.display = 'inline'
+            })
+            .on('end', d => {
+              if (d.parent !== focus) this.style.display = 'none'
+            })
+            // .text(d => d)
       }
     },
     recursTraver(data) {
