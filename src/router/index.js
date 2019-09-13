@@ -9,7 +9,10 @@ export default new Router({
     {
       path: '/',
       name: 'HelloWorld',
-      component: mainView
+      component: mainView,
+      // 独享守卫
+      beforeEnter: (to, from, next) => {
+      }
     }
   ]
 })
