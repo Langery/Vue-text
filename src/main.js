@@ -5,9 +5,28 @@ import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import store from './store'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
+
+axios.defaults.withCredentials = true
+Vue.prototype.$axios = axios
+
+// 请求拦截器
+axios.interceptors.request.use(
+  config => {
+    const AuthenticationInfo = sessionStorage.setItem('AuthenticationInfo')
+    const nonce = parseInt(Math.random() * 10000000000)
+    config.headers['AuthenticationInfo'] = AuthenticationInfo
+    config.headers['nonce'] = nonce
+    // 配置请求默认属性
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
 
 /**
  * 卫星守卫
