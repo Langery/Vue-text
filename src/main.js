@@ -6,9 +6,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import Rx from 'rxjs/Rx'
 
 Vue.config.productionTip = false
-Vue.use(Vuex)
+Vue.use(Vuex, Rx)
 
 axios.defaults.withCredentials = true
 Vue.prototype.$axios = axios
@@ -38,6 +39,12 @@ router.beforeEach((to, from, next) => {
   console.log('上一个页面：', from)
   // 即将进入目标的路由对象
   console.log('下一个页面：', to)
+  if (to.path === '/') {
+    next(vm => {
+      console.log(vm._data)
+      to.meta.title = vm._data.cdChina
+    })
+  }
   // next
   /**
    * function => resolve

@@ -10,14 +10,14 @@ import { multiExpand } from '@/server/index'
 import { intranetPost } from '@/common/commonFun'
 
 export default {
-  data() {
+  data () {
     return {}
   },
-  mounted() {
+  mounted () {
     this.getSampleGraph()
   },
   methods: {
-    getSampleGraph() {
+    getSampleGraph () {
       const sendOther = {
         graphName: 'Knowledge',
         limitNum: 5,
@@ -35,185 +35,8 @@ export default {
           console.log(reason)
         })
     },
-    init(data) {
+    init (data) {
       console.log(data)
-      /* var sendData = [
-        {
-          name: 'dataViz',
-          children: [
-            {
-              name: 'Axes (d3-axis)',
-              children: [
-                {
-                  name: 'd3.axisTop',
-                  value: 1
-                },
-                {
-                  name: 'd3.axisRight',
-                  value: 1
-                }
-              ],
-              methodCount: 14
-            },
-            {
-              name: 'Brushes (d3-brush)',
-              children: [
-                {
-                  name: 'd3.brush',
-                  value: 1
-                },
-                {
-                  name: 'd3.brushX',
-                  value: 1
-                }
-              ],
-              methodCount: 10
-            }
-          ]
-        },
-        {
-          name: 'animation',
-          children: [
-            {
-              name: 'Easings (d3-ease)',
-              children: [
-                {
-                  name: '*ease*',
-                  value: 1
-                },
-                {
-                  name: 'd3.easeLinear',
-                  value: 1
-                }
-              ],
-              methodCount: 41
-            },
-            {
-              name: 'Transitions (d3-transition)',
-              children: [
-                {
-                  name: '*selection*.transition',
-                  value: 1
-                },
-                {
-                  name: '*selection*.interrupt',
-                  value: 1
-                }
-              ],
-              methodCount: 29
-            }
-          ]
-        },
-        {
-          name: 'analysis',
-          children: [
-            {
-              name: 'Delimiter-Separated Values (d3-dsv)',
-              children: [
-                {
-                  name: 'd3.dsvFormat',
-                  value: 1
-                },
-                {
-                  name: '*dsv*.parse',
-                  value: 1
-                }
-              ],
-              methodCount: 17
-            },
-            {
-              name: 'Quadtrees (d3-quadtree)',
-              children: [
-                {
-                  name: 'd3.quadtree',
-                  value: 1
-                },
-                {
-                  name: '*quadtree*.x',
-                  value: 1
-                }
-              ],
-              methodCount: 16
-            }
-          ]
-        },
-        {
-          name: 'dataUtilities',
-          children: [
-            {
-              name: 'Arrays (d3-array)',
-              children: [
-                {
-                  name: 'Statistics',
-                  children: [
-                    {
-                      name: 'd3.min',
-                      value: 1
-                    },
-                    {
-                      name: 'd3.max',
-                      value: 1
-                    }
-                  ]
-                }
-              ],
-              methodCount: 37
-            },
-            {
-              name: 'Collections (d3-collection)',
-              children: [
-                {
-                  name: 'Objects',
-                  children: [
-                    {
-                      name: 'd3.keys',
-                      value: 1
-                    },
-                    {
-                      name: 'd3.values',
-                      value: 1
-                    }
-                  ]
-                }
-              ],
-              methodCount: 32
-            }
-          ]
-        },
-        {
-          name: 'domUtilities',
-          children: [
-            {
-              name: 'Dispatches (d3-dispatch)',
-              children: [
-                {
-                  name: 'd3.dispatch',
-                  value: 1
-                },
-                {
-                  name: '*dispatch*.on',
-                  value: 1
-                }
-              ],
-              methodCount: 5
-            },
-            {
-              name: 'Dragging (d3-drag)',
-              children: [
-                {
-                  name: 'd3.drag',
-                  value: 1
-                },
-                {
-                  name: '*drag*',
-                  value: 1
-                }
-              ],
-              methodCount: 11
-            }
-          ]
-        }
-      ]*/
       var finalData = {
         name: 'd3ApiModules',
         children: [
@@ -506,9 +329,9 @@ export default {
       // const root = pack(data)
       const root = pack(finalData)
       let focus = root
-      let shadow = true
-      let multicolor = true
-      let hexcolor = '#0099cc'
+      // let shadow = true
+      // let multicolor = true
+      // let hexcolor = '#0099cc'
 
       let view
       // function setColorScheme (multi) {
@@ -521,12 +344,12 @@ export default {
 
       // let color = setColorScheme(multicolor)
 
-      function setCircleColor(obj) {
+      function setCircleColor (obj) {
         let depth = obj.depth
         while (obj.depth > 1) obj = obj.parent
         // let newcolor = multicolor ? d3.hsl(color(obj.data.name)) : d3.hsl(hexcolor)
         let newcolor = d3.hsl(color(obj.data.name))
-        newcolor.l += depth == 1 ? 0 : depth * 0.1
+        newcolor.l += depth === 1 ? 0 : depth * 0.1
         return newcolor
       }
 
@@ -595,7 +418,7 @@ export default {
 
       zoomTo([root.x, root.y, root.r * 2])
 
-      function zoomTo(v) {
+      function zoomTo (v) {
         const k = width / v[2]
         view = v
         label.attr(
@@ -609,8 +432,8 @@ export default {
         node.attr('r', d => d.r * k)
       }
 
-      function zoom(d) {
-        const focus0 = focus
+      function zoom (d) {
+        // const focus0 = focus
 
         focus = d
 
@@ -637,7 +460,7 @@ export default {
             // .text(d => d)
       }
     },
-    recursTraver(data) {
+    recursTraver (data) {
       // console.log(data)
       var links = data.links
       var newLinks = []
@@ -673,7 +496,7 @@ export default {
       // console.log(graph)
 
       var already_append = []
-      function new_child(nodeId) {
+      function new_child (nodeId) {
         var child = {
           name: String(nodeId),
           children: []
@@ -684,11 +507,11 @@ export default {
       already_append.push(links[0].__s)
 
       // console.log(new_root)
-      var inArray = function isInArray(arr, value) {
+      var inArray = function isInArray (arr, value) {
         for (var i = 0; i < arr.length; i++) if (value === arr[i]) return true
         return false
       }
-      function do_bfs(already_append, graph, node_dict) {
+      function do_bfs (already_append, graph, node_dict) {
         var Flag = false
         var list = graph[node_dict['name']]
         for (var i in list) {
@@ -701,9 +524,10 @@ export default {
 
         // console.log(node_dict)
         if (!Flag) return
-        for (var index in node_dict['children'])
+        for (var index in node_dict['children']) {
           do_bfs(already_append, graph, node_dict['children'][index])
-        return
+        }
+        // return
       }
 
       do_bfs(already_append, graph, new_root)

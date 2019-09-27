@@ -98,20 +98,20 @@ export default {
           .attr('font-size', 10)
           .attr('transform', `translate(${root.dy / 3},${root.dx - x0})`)
 
-      const link = g.append('g')
-        .attr('fill', 'none')
-        .attr('stroke', '#555')
-        .attr('stroke-opacity', 0.4)
-        .attr('stroke-width', 1.5)
-        .selectAll('path')
-        .data(root.links())
-        .join('path')
-          .attr('d', d => `
-            M${d.target.y},${d.target.x}
-            C${d.source.y + root.dy / 2},${d.target.x}
-            ${d.source.y + root.dy / 2},${d.source.x}
-            ${d.source.y},${d.source.x}
-          `)
+      // const link = g.append('g')
+      //   .attr('fill', 'none')
+      //   .attr('stroke', '#555')
+      //   .attr('stroke-opacity', 0.4)
+      //   .attr('stroke-width', 1.5)
+      //   .selectAll('path')
+      //   .data(root.links())
+      //   .join('path')
+      //     .attr('d', d => `
+      //       M${d.target.y},${d.target.x}
+      //       C${d.source.y + root.dy / 2},${d.target.x}
+      //       ${d.source.y + root.dy / 2},${d.source.x}
+      //       ${d.source.y},${d.source.x}
+      //     `)
 
       const node = g.append('g')
           .attr('stroke-linejoin', 'round')
@@ -242,7 +242,7 @@ export default {
         // console.log(node_dict)
         if (!Flag) return
         for (var index in node_dict['children']) do_bfs(already_append, graph, node_dict['children'][index])
-        return
+        // return
       }
 
       do_bfs(already_append, graph, new_root)

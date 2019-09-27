@@ -241,7 +241,7 @@ export default {
         // console.log(node_dict)
         if (!Flag) return
         for (var index in node_dict['children']) do_bfs(already_append, graph, node_dict['children'][index])
-        return
+        // return
       }
 
       do_bfs(already_append, graph, new_root)

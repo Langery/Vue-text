@@ -237,7 +237,7 @@ export default {
           }
         })
       } else if (newMatrix.length < max) {
-        var lessN = max - newMatrix.length
+        // var lessN = max - newMatrix.length
         var newArr = []
         for (var j = 0; j < max; j++) newArr.push(0)
         newMatrix.push(newArr)
