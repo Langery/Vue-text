@@ -31,7 +31,7 @@ npm install
 ```
 
 &emsp;目前我们需要的模块并不是 ace 或 vue2-ace-editor ，而是在 node_modules 中的 brace 模块（目前我也没搞懂到底为什么是它，但是管用）。<br />
-&emsp;[`brace`](https://www.npmjs.com/package/brace)的坑也好多...
+&emsp;[`brace`](https://www.npmjs.com/package/brace) 的坑也好多...
 
 ``` javascript
   <script>
@@ -58,6 +58,11 @@ npm install
 
 - [ ] ~~JS链接数据库框架~~
 - [ ] 尝试做一个中间层
+
+&emsp;Vue 层面问题
+
+- [ ] 卫星守卫内部细节
+- [ ] RxJS 功能操作未实现
 
 ## D3.js
 
