@@ -12,6 +12,12 @@
     <!-- <text-ace></text-ace> -->
     <!-- <data-btn></data-btn> -->
     <!-- <ace-text></ace-text> -->
+    <section>
+      <my-list>
+        <template v-slot:header>name：header具名插槽</template>
+        <div>内容被放到默认插槽中</div>
+      </my-list>
+    </section>
   </div>
 </template>
 
@@ -25,6 +31,13 @@ export default {
     }
   },
   components: {
+    myList: {
+      template:
+      `<div>
+        <slot name="header"></slot>
+        <slot></slot>
+      </div>`
+    },
     'one': () => import('@/view/components/one'),
     'TextAce': () => import('@/view/components/textAce'),
     'DataBtn': () => import('@/view/components/dataBtn'),
