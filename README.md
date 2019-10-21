@@ -26,13 +26,13 @@ npm install
 
 ## Ace
 
-&emsp;有一个需求是引入[`Ace`](https://github.com/ajaxorg/ace)模快进行输入文本自动匹配的功能，先已完成简单的内容，后续会不断的更迭此模快内容。但是基于是vue项目目前也未全部引用 Ace 模块，而是借助于vue的另一个 npm 组件[`vue2-ace-editor`](https://www.npmjs.com/package/vue2-ace-editor)来实现此功能的。
+&emsp;有一个需求是引入 [`Ace`](https://github.com/ajaxorg/ace) 模快进行输入文本自动匹配的功能，先已完成简单的内容，后续会不断的更迭此模快内容。但是基于是vue项目目前也未全部引用 Ace 模块，而是借助于vue的另一个 npm 组件 [`vue2-ace-editor`](https://www.npmjs.com/package/vue2-ace-editor) 来实现此功能的。
 &emsp;参考资料：
   1. [Vue.js简单集成ACE代码编辑器](https://blog.csdn.net/YoshinoNanjo/article/details/82978668)
 
 > 引入和使用
 
-``` bash
+``` node
   $ npm install --save-dev vue2-ace-editor
 ```
 
