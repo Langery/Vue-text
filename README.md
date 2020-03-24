@@ -100,3 +100,4 @@ npm install
 ## Vue Node
 
 1. [【应用】使用 vue-router 之导航守卫 + meta + localStorage 实现在未登录状态下跳转到登录页面的功能](https://blog.csdn.net/Dora_5537/article/details/88328578)
+2. `config/index.js` 需要更改开发与生产的路径。`assetsPublicPath` 需要改成 `./`
