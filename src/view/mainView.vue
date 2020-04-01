@@ -16,6 +16,7 @@
       <my-list>
         <template v-slot:header>name：header具名插槽</template>
         <div>内容被放到默认插槽中</div>
+        <template v-solt:footer>Footer 插槽</template>
       </my-list>
     </section>
   </div>
@@ -36,6 +37,7 @@ export default {
       `<div>
         <slot name="header"></slot>
         <slot></slot>
+        <slot name="footer"></slot>
       </div>`
     },
     'one': () => import('@/view/components/one'),
@@ -52,9 +54,24 @@ export default {
   created () {
   },
   mounted () {
-    
+    this.classFun()
   },
   methods: {
+    classFun () {
+      class Point {
+        constructor (x, y) {
+          this.x = x
+          this.y = y
+        }
+      }
+      /**
+       * defined the Class function
+       * Point is a object and get the parameters
+       * user can give one or some parameters to set its attribute
+       */
+      let testP = new Point(1, 5)
+      console.log(testP)
+    },
     two (one, three) {
       console.log(one)
       console.log(three)

@@ -19,6 +19,9 @@ export default {
     this.once()
   },
   methods: {
+    /**
+     * Promise 异步处理函数
+     */
     once () {
       var a = Promise.resolve('xx')
       console.log(a)
@@ -36,7 +39,6 @@ export default {
     },
     firstFun (num) {
       return new Promise((resolve, reject) => {
-        // new Error()
         typeof num === 'number' ? resolve() : reject(new Error())
       }).then(() => {
         console.log('参数是一个number值')
