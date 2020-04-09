@@ -19,6 +19,8 @@
         <template v-solt:footer>Footer 插槽</template>
       </my-list>
     </section>
+    <xlsx></xlsx>
+    <excel></excel>
   </div>
 </template>
 
@@ -43,7 +45,9 @@ export default {
     'one': () => import('@/view/components/one'),
     'TextAce': () => import('@/view/components/textAce'),
     'DataBtn': () => import('@/view/components/dataBtn'),
-    'AceText': () => import('@/view/components/aceText')
+    'AceText': () => import('@/view/components/aceText'),
+    'Xlsx': () => import('@/view/components/xlsx'),
+    'Excel': () => import('@/view/components/excel')
     // 'TreeDiagram': () => import('@/view/components/D3/treeDiagram'),
     // 'TestDia': () => import('@/view/components/D3/testDia'),
     // 'TransitAnimat': () => import('@/view/components/transitAnimat'),

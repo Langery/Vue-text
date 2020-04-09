@@ -97,6 +97,10 @@ npm install
 
 &emsp;在参考其他资料时遇到一个关于自己创建 node_modules 的问题，即自己在原有依赖的基础上自己创建一个新的 function ，在此需要说明一下，当创建完此方法后一定要在此文件夹（同级文件夹）下的 index.js 中做函数引用后方可在代码中调用此方法，否则程序会报 undefined
 
+## xlsx
+
+## excelJS
+
 ## Vue Node
 
 1. [【应用】使用 vue-router 之导航守卫 + meta + localStorage 实现在未登录状态下跳转到登录页面的功能](https://blog.csdn.net/Dora_5537/article/details/88328578)
