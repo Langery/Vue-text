@@ -62,7 +62,7 @@ export function daysReturn (dataS, dataE) {
     resolve(newArr)
   }).then(data => {
     console.log(data[1] - data[0])
-    return data[1] - data[0] > 0 ? Promise.resolve(data) : Promise.reject(data)
+    return data[1] - data[0] > 0 ? data : data
   })
 }
 
@@ -72,7 +72,7 @@ export function postData (getUrl, data) {
     resolve(res)
   }).then((data) => {
     console.log(data)
-    return data.result_code === '200' ? Promise.resolve(data.data) : Promise.reject(data.result_message)
+    return data.result_code === '200' ? data.data : data.result_message
   })
 }
 
@@ -92,7 +92,7 @@ export function getData (getUrl, ...data) {
     resolve(res)
   }).then((data) => {
     console.log(data)
-    return data.result_code === '200' ? Promise.resolve(data.data) : Promise.reject(data.result_message)
+    return data.result_code === '200' ? data.data : data.result_message
   })
 }
 
