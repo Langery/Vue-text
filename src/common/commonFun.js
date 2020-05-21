@@ -22,6 +22,27 @@ export function findMapFun (sends, text) {
   return [clickonce, clickitem]
 }
 
+export function getTime () {
+  let dateNow = new Date()
+  let year = dateNow.getFullYear()
+  let month = dateNow.getMonth() + 1
+  let date = dateNow.getDate()
+  let hour = dateNow.getHours()
+  let min = dateNow.getMinutes()
+  let sec = dateNow.getSeconds()
+  let millSec = dateNow.getMilliseconds()
+  function handleTime (date) {
+    let fullDate = date < 10 ? `0${date}` : date
+    return fullDate
+  }
+  function handleMilliseconds (date) {
+    let fullDate = date >= 100 ? date : date >= 10 ? `0${date}` : `00${date}`
+    return fullDate
+  }
+  let nowTime = `${year}-${handleTime(month)}-${handleTime(date)} ${handleTime(hour)}:${handleTime(min)}:${handleTime(sec)}:${handleMilliseconds(millSec)}`
+  return nowTime
+}
+
 export function formatDateTime (inputTime) {
   var date = new Date(inputTime)
   var y = date.getFullYear()
@@ -94,25 +115,4 @@ export function getData (getUrl, ...data) {
     console.log(data)
     return data.result_code === '200' ? data.data : data.result_message
   })
-}
-
-export function getTime () {
-  let dateNow = new Date()
-  let year = dateNow.getFullYear()
-  let month = dateNow.getMonth() + 1
-  let date = dateNow.getDate()
-  let hour = dateNow.getHours()
-  let min = dateNow.getMinutes()
-  let sec = dateNow.getSeconds()
-  let millSec = dateNow.getMilliseconds()
-  function handleTime (date) {
-    let fullDate = date < 10 ? `0${date}` : date
-    return fullDate
-  }
-  function handleMilliseconds (date) {
-    let fullDate = date >= 100 ? date : date >= 10 ? `0${date}` : `00${date}`
-    return fullDate
-  }
-  let nowTime = `${year}-${handleTime(month)}-${handleTime(date)} ${handleTime(hour)}:${handleTime(min)}:${handleTime(sec)}:${handleMilliseconds(millSec)}`
-  return nowTime
 }
