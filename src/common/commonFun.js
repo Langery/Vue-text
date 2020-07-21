@@ -116,3 +116,22 @@ export function getData (getUrl, ...data) {
     return data.result_code === '200' ? data.data : data.result_message
   })
 }
+
+export function deepQuery (tree, id) {
+  var isGet = false;
+  var retNode = null;
+  function deepSearch(tree,id){
+    for(var i = 0; i<tree.length; i++) {
+      if(tree[i].children && tree[i].children.length>0) {
+        deepSearch(tree[i].children,id);
+      }
+      if(id === tree[i].id || isGet) {
+        isGet||(retNode = tree[i]);
+        isGet = true;
+        break;
+      }
+    }
+  }
+  deepSearch(tree,id);
+  return retNode;
+}
