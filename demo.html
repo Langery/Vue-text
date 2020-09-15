@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #content{
+      position:relative;
+    }
+    .mydiv{
+      border:1px solid #368ABB;
+      background-color:#43A4DC;
+      
+    }
+
+    #div1{
+      /* left:200px;
+      top:200px; */
+      width:80%;
+      /* height:50px; */
+      display: inline-block;
+    }
+    #div2{
+      /* position:absolute;
+      left:400px;
+      top:50px; */
+      float: right;
+      width:100px;
+      min-height:40px;
+    }
+    #line{
+      position:absolute;
+      width:2px;
+      margin-top:-1px;
+      background-color:red;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="addWrapper()">
+    NEW
+  </button>
+  <div id="content">
+    <div id="div1">
+      医生回答(1)
+  
+      <span id="target1" class="mydiv">孙向阳</span>主任医师
+  
+      内科敦化市第二人民医院
+      病情分析：你好，感冒后可以选择用头孢和维生素C，对于这两种药物不发生冲突，是可以选择进行一起口服等，对于维生素C可以放心使用也可以选择静滴的方式，另外感冒期间注意及时补充温开水，多吃新鲜的水果蔬菜，饮食宜清淡，避免吃辛辣刺激等食物，注意保暖。
+    </div>
+    <div id="div2" class="mydiv"></div>
+    <div id="line"></div>
+  
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <div>
+      Hehe
+    </div>
+  </div>
+    
+  <script>
+    function adjustLine(from, to, line){
+
+      var zIndex = getComputedStyle(from).getPropertyValue("z-index");
+      zIndex = zIndex === "auto" ? 0 : +zIndex;
+      var fT = from.offsetTop  + from.offsetHeight/2;
+      var tT = to.offsetTop 	 + to.offsetHeight/2;
+      var fL = from.offsetLeft + from.offsetWidth/2;
+      var tL = to.offsetLeft 	 + to.offsetWidth/2;
+
+      // 三角高
+      var CA   = Math.abs(tT - fT);
+      // 三角底边长
+      var CO   = Math.abs(tL - fL);
+      // 勾股定理算斜边
+      var H    = Math.sqrt(CA*CA + CO*CO);
+      // 计算斜边与底边的夹角
+      var ANG  = 180 / Math.PI * Math.acos( CA/H );
+
+      /*  if(tT > fT){
+          var top  = (tT-fT)/2 + fT;
+      }else{
+          var top  = (fT-tT)/2 + tT;
+      }
+      if(tL > fL){
+          var left = (tL-fL)/2 + fL;
+      }else{
+          var left = (fL-tL)/2 + tL;
+      } */
+
+      var top = Math.abs((tT-fT)/2) + Math.min(fT,tT);
+      var left = Math.abs((tL-fL)/2) + Math.min(fL,tL);
+
+      if(( fT < tT && fL < tL) || ( tT < fT && tL < fL) || (fT > tT && fL > tL) || (tT > fT && tL > fL)){
+        ANG *= -1;
+      }
+      top-= H/2;
+
+      line.style["-webkit-transform"] = 'rotate('+ ANG +'deg)';
+      line.style["-moz-transform"] = 'rotate('+ ANG +'deg)';
+      line.style["-ms-transform"] = 'rotate('+ ANG +'deg)';
+      line.style["-o-transform"] = 'rotate('+ ANG +'deg)';
+      line.style["-transform"] = 'rotate('+ ANG +'deg)';
+      line.style.top    = top+'px';
+      line.style.left   = left+'px';
+      line.style.height = H + 'px';
+      line.style.zIndex  = zIndex - 1;
+    }
+    adjustLine(
+      document.getElementById('target1'), 
+      document.getElementById('div2'),
+      document.getElementById('line')
+    );
+
+    function addWrapper() {
+      var selection = window.getSelection();
+      let range = selection.getRangeAt(0);
+      let documentFragment = range.extractContents();
+      let n = document.createElement("span");
+      n.appendChild(documentFragment);
+      n.classList.add("mydiv");
+      range.insertNode(n);
+      console.log(documentFragment);
+    }
+  </script>
+</body>
+</html>

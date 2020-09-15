@@ -21,6 +21,8 @@
     </section>
     <xlsx></xlsx>
     <excel></excel>
+    <br />
+    <text-notes></text-notes>
   </div>
 </template>
 
@@ -47,7 +49,8 @@ export default {
     'DataBtn': () => import('@/view/components/dataBtn'),
     'AceText': () => import('@/view/components/aceText'),
     'Xlsx': () => import('@/view/components/xlsx'),
-    'Excel': () => import('@/view/components/excel')
+    'Excel': () => import('@/view/components/excel'),
+    'TextNotes': () => import('@/view/components/textNotes')
     // 'TreeDiagram': () => import('@/view/components/D3/treeDiagram'),
     // 'TestDia': () => import('@/view/components/D3/testDia'),
     // 'TransitAnimat': () => import('@/view/components/transitAnimat'),
