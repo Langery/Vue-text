@@ -7,8 +7,11 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import Rx from 'rxjs/Rx'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'
 
 Vue.config.productionTip = false
+Vue.use(iView)
 Vue.use(Vuex, Rx)
 
 axios.defaults.withCredentials = true

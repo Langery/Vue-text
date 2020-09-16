@@ -3,26 +3,21 @@
     <button @click="addWrapper()">
       Add Comment
     </button>
+
     <div id="content">
-      <!-- <div class="demo-split">
-        <Split v-model="split1">
+      <div class="demo-split">
+        <Split v-model="split1" @on-move-end="changeLine()">
           <div slot="left" class="demo-split-pane">
-            Left Pane
+            <div id="div1">
+              Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的<span id="target1" class="textdiv">渐进式框架</span>。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
+            </div>
           </div>
-          <div slot="right" class="demo-split-pane">
-            Right Pane
+          <div slot="right" id="rightContent" class="demo-split-pane">
+            <div id="div2" class="mydiv"></div>
           </div>
         </Split>
-      </div> -->
-      
-      <div id="div1">
-
-        Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的<span id="target1" class="textdiv">渐进式框架</span>。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。
       </div>
-
-      <div id="div2" class="mydiv"></div>
       <div id="line" class="line"></div>
-
     </div>
   </div>
 </template>
@@ -38,19 +33,36 @@ export default {
   props: [
   ],
   mounted () {
-    this.adjustLine(
-      document.getElementById('target1'),
-      document.getElementById('div2')
-    )
+    setTimeout(() => {
+      this.adjustLine(
+        document.getElementById('target1'),
+        document.getElementById('div2')
+      )
+    }, 100)
   },
   methods: {
+    changeLine () {
+      if (this.num === 1) {
+        this.adjustLine(
+          document.getElementById('target1'),
+          document.getElementById('div2')
+        )
+      } else {
+        this.adjustLine(
+          document.getElementById(`target${this.num}`),
+          document.getElementById(`comment${this.num}`)
+        )
+      }
+    },
     adjustLine (from, to, line = document.getElementById('line')) {
       var zIndex = getComputedStyle(from).getPropertyValue("z-index")
       zIndex = zIndex === "auto" ? 0 : +zIndex
       var fT = from.offsetTop + from.offsetHeight / 2
       var tT = to.offsetTop + to.offsetHeight / 2
       var fL = from.offsetLeft + from.offsetWidth / 2
-      var tL = to.offsetLeft + to.offsetWidth / 2
+
+      const parentOff = to.closest(".right-pane.ivu-split-pane")
+      var tL = to.offsetLeft + parentOff.offsetLeft + to.offsetWidth / 2
 
       // 三角高
       var CA = Math.abs(tT - fT)
@@ -89,18 +101,18 @@ export default {
       n.setAttribute('id', `target${this.num}`)
       
       let ndiv = document.createElement('div')
-      let nline = document.createElement('div')
+      // let nline = document.createElement('div')
       
-      const content = document.getElementById('content')
+      const content = document.getElementById('rightContent')
 
       ndiv.classList.add('mydiv')
-      nline.classList.add('line')
+      // nline.classList.add('line')
 
       ndiv.setAttribute('id', `comment${this.num}`)
-      nline.setAttribute('id', `line${this.num}`)
+      // nline.setAttribute('id', `line${this.num}`)
       
       content.insertBefore(ndiv, content.lastChild)
-      content.insertBefore(nline, content.lastChild)
+      // content.insertBefore(nline, content.lastChild)
 
       range.insertNode(n)
       console.log(documentFragment)
@@ -115,6 +127,14 @@ export default {
 </script>
 
 <style>
+.demo-split{
+  height: 200px;
+  border: 1px solid #dcdee2;
+}
+.demo-split-pane{
+  padding: 10px;
+}
+
 #content{
   position:relative;
 }
@@ -124,20 +144,17 @@ export default {
 }
 .mydiv{
   border:1px solid #368ABB;
-  background-color:#43A4DC;
+  background: #fff;
   float: right;
-  width:100px;
+  width:100%;
   min-height:40px;
+  margin: 3px 0;
+  border-radius: 5px;
 }
 
 #div1{
   width:80%;
   display: inline-block;
-}
-#div2{
-  /* float: right;
-  width:100px;
-  min-height:40px; */
 }
 
 .line{
