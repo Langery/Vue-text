@@ -10,9 +10,9 @@
         <AnchorLink href="#one" title="Basic Usage" />
         <AnchorLink href="#static_position" title="Static Position" />
         <AnchorLink href="#API" title="API">
-            <AnchorLink href="#Anchor_props" title="Anchor props" />
-            <AnchorLink href="#Anchor_events" title="Anchor events" />
-            <AnchorLink href="#AnchorLink_props" title="AnchorLink props" />
+          <AnchorLink href="#Anchor_props" title="Anchor props" />
+          <AnchorLink href="#Anchor_events" title="Anchor events" />
+          <AnchorLink href="#AnchorLink_props" title="AnchorLink props" />
         </AnchorLink>
       </Anchor>
     </div>
@@ -23,7 +23,6 @@
 export default {
   data () {
     return {
-      showMenu: false
     }
   },
   methods: {
@@ -34,26 +33,29 @@ export default {
 <style scoped>
 .float-menu{
   position: fixed;
-  right: 0;
+  right: -30px;
   top: 100px;
 }
 .left-icon{
-  display: inline-block;
+  /* display: inline-block; */
   width: 50px;
   height: 50px;
   background: #ccffcc;
   position: relative;
-  right: 0px;
-  top: -125px;
+  right: 50px;
+  top: 55px;
   border-radius: 20% 0 0 20%;
+  border: 1px #ccc solid;
+  box-shadow: 3px 3px 3px #E9E9E9;
+  z-index: -1;
 }
 img{
   width: 40px;
   height: 40px;
 }
 .right-infor{
-  padding: 8px 4px;
-  display: inline-block;
+  background: #fff;
+  padding: 10px;
   width: 0px;
   transition: width 800ms;
   -moz-transition: width 800ms; /* Firefox 4 */
@@ -62,12 +64,13 @@ img{
   border: 1px #ccc solid;
   text-align: start;
   box-shadow: 3px 3px 3px 3px #E9E9E9;
-  border-radius: 0 0 0 10px;
+  border-radius: 10px 0 0 10px;
+  z-index: 100;
 }
 .left-icon:hover ~ .right-infor{
-  width: 150px;
+  width: 185px;
 }
 .right-infor:hover{
-  width: 150px;
+  width: 185px;
 }
 </style>
