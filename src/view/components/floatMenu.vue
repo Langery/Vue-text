@@ -37,7 +37,6 @@ export default {
   top: 100px;
 }
 .left-icon{
-  /* display: inline-block; */
   width: 50px;
   height: 50px;
   background: #ccffcc;
