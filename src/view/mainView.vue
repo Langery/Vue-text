@@ -22,7 +22,8 @@
     <xlsx></xlsx>
     <excel></excel>
     <br />
-    <text-notes></text-notes>
+    <!-- <text-notes></text-notes> -->
+    <float-menu></float-menu>
   </div>
 </template>
 
@@ -50,7 +51,8 @@ export default {
     'AceText': () => import('@/view/components/aceText'),
     'Xlsx': () => import('@/view/components/xlsx'),
     'Excel': () => import('@/view/components/excel'),
-    'TextNotes': () => import('@/view/components/textNotes')
+    // 'TextNotes': () => import('@/view/components/textNotes')
+    'FloatMenu': () => import('@/view/components/floatMenu')
     // 'TreeDiagram': () => import('@/view/components/D3/treeDiagram'),
     // 'TestDia': () => import('@/view/components/D3/testDia'),
     // 'TransitAnimat': () => import('@/view/components/transitAnimat'),
