@@ -52,14 +52,17 @@ img{
   height: 40px;
 }
 .right-infor{
+  padding: 8px 4px;
   display: inline-block;
   width: 0px;
   transition: width 800ms;
   -moz-transition: width 800ms; /* Firefox 4 */
   -webkit-transition: width 800ms; /* Safari and Chrome */
   -o-transition: width 800ms; /* Opera */
-  border: 2px #ccc solid;
+  border: 1px #ccc solid;
   text-align: start;
+  box-shadow: 3px 3px 3px 3px #E9E9E9;
+  border-radius: 0 0 0 10px;
 }
 .left-icon:hover ~ .right-infor{
   width: 150px;
