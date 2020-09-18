@@ -33,7 +33,7 @@ export default {
 <style scoped>
 .float-menu{
   position: fixed;
-  right: -30px;
+  right: -50px;
   top: 100px;
 }
 .left-icon{
