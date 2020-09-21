@@ -24,6 +24,17 @@
     <br />
     <!-- <text-notes></text-notes> -->
     <float-menu></float-menu>
+    <!-- <div class="goodShow">
+
+      <Anchor show-ink :affix="false" container=".goodShow">
+        <AnchorLink href="#basic_usage" title="Basic Usage" />
+        <AnchorLink href="#static_position" title="Static Position" />
+      </Anchor>
+
+      <div id="basic_usage" style="height:30rem;">12312312312</div>
+      <div id="static_position" style="height:30rem;">123123123123</div>
+
+    </div> -->
   </div>
 </template>
 
@@ -102,4 +113,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.goodShow{
+  position: relative;
+  overflow-y: scroll;
+}
 </style>

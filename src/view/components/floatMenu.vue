@@ -6,14 +6,12 @@
       <!-- <slot></slot> -->
     </div>
     <div class="right-infor">
-      <Anchor show-ink>
+      <Anchor show-ink container="">
         <AnchorLink href="#one" title="Basic Usage" />
-        <AnchorLink href="#static_position" title="Static Position" />
-        <AnchorLink href="#API" title="API">
-          <AnchorLink href="#Anchor_props" title="Anchor props" />
-          <AnchorLink href="#Anchor_events" title="Anchor events" />
-          <AnchorLink href="#AnchorLink_props" title="AnchorLink props" />
-        </AnchorLink>
+        <AnchorLink href="#two" title="Static Position" />
+        
+        <AnchorLink href="#three" title="Anchor props" />
+        <AnchorLink href="#four" title="Anchor events" />
       </Anchor>
     </div>
   </div>
@@ -67,9 +65,9 @@ img{
   z-index: 100;
 }
 .left-icon:hover ~ .right-infor{
-  width: 185px;
+  width: 220px;
 }
 .right-infor:hover{
-  width: 185px;
+  width: 220px;
 }
 </style>
