@@ -113,8 +113,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.goodShow{
-  position: relative;
-  overflow-y: scroll;
-}
+// .goodShow{
+//   position: relative;
+//   overflow-y: scroll;
+// }
 </style>

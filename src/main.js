@@ -7,6 +7,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import Rx from 'rxjs/Rx'
+import math from 'mathjs'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 
@@ -16,6 +17,7 @@ Vue.use(Vuex, Rx)
 
 axios.defaults.withCredentials = true
 Vue.prototype.$axios = axios
+Vue.prototype.$math = math // this.$math
 
 // 请求拦截器
 axios.interceptors.request.use(
