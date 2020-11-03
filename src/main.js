@@ -7,17 +7,19 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import Rx from 'rxjs/Rx'
-import math from 'mathjs'
-import iView from 'iview'
-import 'iview/dist/styles/iview.css'
+// import math from 'mathjs'
+// import iView from 'iview-admin'
+import ViewUI from 'view-design'
+// import 'iview/dist/styles/iview.css'
+import 'view-design/dist/styles/iview.css'
 
 Vue.config.productionTip = false
-Vue.use(iView)
+Vue.use(ViewUI)
 Vue.use(Vuex, Rx)
 
 axios.defaults.withCredentials = true
 Vue.prototype.$axios = axios
-Vue.prototype.$math = math // this.$math
+// Vue.prototype.$math = math // this.$math
 
 // 请求拦截器
 axios.interceptors.request.use(

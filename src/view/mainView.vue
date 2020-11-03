@@ -35,6 +35,7 @@
       <div id="static_position" style="height:30rem;">123123123123</div>
 
     </div> -->
+    <table-box></table-box>
   </div>
 </template>
 
@@ -63,7 +64,8 @@ export default {
     'Xlsx': () => import('@/view/components/xlsx'),
     'Excel': () => import('@/view/components/excel'),
     // 'TextNotes': () => import('@/view/components/textNotes')
-    'FloatMenu': () => import('@/view/components/floatMenu')
+    'FloatMenu': () => import('@/view/components/floatMenu'),
+    'TableBox': () => import('@/view/components/tableBox')
     // 'TreeDiagram': () => import('@/view/components/D3/treeDiagram'),
     // 'TestDia': () => import('@/view/components/D3/testDia'),
     // 'TransitAnimat': () => import('@/view/components/transitAnimat'),
