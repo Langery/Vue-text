@@ -14,7 +14,7 @@
     <!-- <ace-text></ace-text> -->
     <section>
       <my-list>
-        <template v-slot:header>name：header具名插槽</template>
+        <template v-slot:header>name:header具名插槽</template>
         <div>内容被放到默认插槽中</div>
         <template v-solt:footer>Footer 插槽</template>
       </my-list>
