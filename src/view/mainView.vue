@@ -36,6 +36,8 @@
 
     </div> -->
     <table-box></table-box>
+
+    <!-- <text-notes></text-notes> -->
   </div>
 </template>
 
@@ -71,7 +73,8 @@ export default {
     // 'TransitAnimat': () => import('@/view/components/transitAnimat'),
     // 'RadialDendrogram': () => import('@/view/components/D3/radialDendrogram'),
     // 'ChordDia': () => import('@/view/components/D3/chordDia'),
-    // 'AnalysisDiagram': () => import('@/view/components/D3/analysisDiagram')
+    // 'AnalysisDiagram': () => import('@/view/components/D3/analysisDiagram'),
+    // 'TextNotes': ()=> import('@/view/components/textNotes')
   },
   created () {
   },
